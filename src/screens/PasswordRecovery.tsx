@@ -1,5 +1,4 @@
 import * as firebase from 'firebase'
-import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { SignUpScreen } from './SignUpScreen'
 import {
@@ -28,7 +27,7 @@ interface PasswordRecoveryScreenState {
 export class PasswordRecoveryScreen extends Component<
   PasswordRecoveryScreenProps,
   PasswordRecoveryScreenState
-  > {
+> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Password Recovery',
   }
@@ -36,7 +35,7 @@ export class PasswordRecoveryScreen extends Component<
   constructor(props: PasswordRecoveryScreenProps) {
     super(props)
     this.state = {
-      email: ''
+      email: '',
     }
 
     this.sendResetPasswordEmail = this.sendResetPasswordEmail.bind(this)
@@ -64,19 +63,15 @@ export class PasswordRecoveryScreen extends Component<
   }
 
   private validateInput(): boolean {
-    return (
-      SignUpScreen.EMAIL_REGEX.test(this.state.email.toLowerCase())
-    )
+    return SignUpScreen.EMAIL_REGEX.test(this.state.email.toLowerCase())
   }
 
   private async sendResetPasswordEmail(): Promise<void> {
     const { email } = this.state
     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#sendPasswordResetEmail
     try {
-      await firebase.auth()
-        .sendPasswordResetEmail(email)
+      await firebase.auth().sendPasswordResetEmail(email)
       this.props.navigation.navigate('LogIn')
-
     } catch (error) {
       const errorCode = error.code
       let errorMessage = error.errorMessage
@@ -109,5 +104,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     textAlign: 'center',
-  }
+  },
 })

@@ -1,8 +1,14 @@
 import { Facebook } from 'expo'
 import * as firebase from 'firebase'
-import gql from 'graphql-tag'
+import db from '../services/Db'
 import React, { Component } from 'react'
-import { Mutation } from 'react-apollo'
+import {
+  Feeling,
+  Reflextion,
+  addReflextion,
+  updateReflextion,
+  deleteReflextion,
+} from '../services/ReflextionService'
 import {
   Alert,
   Button,

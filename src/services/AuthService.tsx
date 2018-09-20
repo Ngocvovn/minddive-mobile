@@ -1,4 +1,5 @@
 import * as firebase from 'firebase'
+require('firebase/firestore')
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import * as React from 'react'
 import { AsyncStorage, Button, Text, View } from 'react-native'
