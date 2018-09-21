@@ -4,11 +4,11 @@ import db from '../services/Db'
 import React, { Component } from 'react'
 import {
   Feeling,
-  Reflextion,
-  addReflextion,
-  updateReflextion,
-  deleteReflextion,
-} from '../services/ReflextionService'
+  Reflection,
+  addReflection,
+  updateReflection,
+  deleteReflection,
+} from '../services/ReflectionService'
 import {
   Alert,
   Button,
