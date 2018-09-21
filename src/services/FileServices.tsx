@@ -12,7 +12,7 @@ export async function uploadImage(image: ImagePicker.ImageInfo) {
     const res = await fetch(image.uri)
     const blob = await res.blob()
     const imageRef = await imagesRef.put(blob)
-    // link to store in reflextion
+    // link to store in reflection
     let link: string = await imagesRef.getDownloadURL()
   } catch (error) {
     console.log(error)

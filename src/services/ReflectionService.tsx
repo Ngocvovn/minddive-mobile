@@ -4,7 +4,7 @@ export enum Feeling {
   Happy = 'Happy',
   Sad = 'Sad',
 }
-export interface Reflextion {
+export interface Reflection {
   createdBy?: string
   createdAt?: Date
   text?: string
@@ -13,18 +13,17 @@ export interface Reflextion {
   updatedAt?: Date
 }
 
-const collection = db.collection('reflextions')
+const collection = db.collection('reflections')
 
-export async function addReflextion(reflextion: Reflextion) {
+export async function addReflection(reflection: Reflection) {
   try {
-    let response = await collection.add(reflextion)
-    console.log(response)
+    let response = await collection.add(reflection)
   } catch (error) {
     console.log(error)
   }
 }
 
-export async function deleteReflextion(uid: string) {
+export async function deleteReflection(uid: string) {
   try {
     await collection.doc(uid).delete()
   } catch (error) {
@@ -32,9 +31,9 @@ export async function deleteReflextion(uid: string) {
   }
 }
 
-export async function updateReflextion(uid: string, newReflextion: Reflextion) {
+export async function updateReflection(uid: string, newReflection: Reflection) {
   try {
-    await collection.doc(uid).update(newReflextion)
+    await collection.doc(uid).update(newReflection)
   } catch (error) {
     console.log(error)
   }
@@ -47,14 +46,14 @@ export async function updateReflextion(uid: string, newReflextion: Reflextion) {
   if (user !== null) {
     id = user.uid
   }
-  let as: Reflextion = {
+  let as: Reflection = {
     updatedAt: new Date(),
     createdBy: id,
     text: 'daasdasdasd',
     feeling: Feeling.Sad,
   }
   try {
-    let response = await updateReflextion('8AnCrAvpOGF8L2Ysgexn', as)
+    let response = await updateReflection('8AnCrAvpOGF8L2Ysgexn', as)
   } catch (error) {
     console.log(error)
   }
