@@ -14,7 +14,6 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
-import { signInWithFacebook } from './LoginScreen'
 
 interface SignUpScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -53,17 +52,11 @@ export class SignUpScreen extends Component<
     }
 
     this.signUpWithEmailPassword = this.signUpWithEmailPassword.bind(this)
-    this.signUpWithFacebook = this.signUpWithFacebook.bind(this)
   }
 
   public render(): React.ReactNode {
     return (
       <View style={styles.container}>
-        <Button
-          onPress={this.signUpWithFacebook}
-          title="Sign up with Facebook"
-        />
-
         <Text style={styles.error}> {this.state.error}</Text>
         <View style={styles.nameInputRow}>
           <TextInput
@@ -109,12 +102,6 @@ export class SignUpScreen extends Component<
       SignUpScreen.PASSWORD_REGEX.test(this.state.password) &&
       SignUpScreen.NAME_REGEX.test(this.state.firstName) &&
       SignUpScreen.NAME_REGEX.test(this.state.lastName)
-    )
-  }
-
-  private async signUpWithFacebook(): Promise<void> {
-    await signInWithFacebook(this.setState, () =>
-      this.props.navigation.navigate('App'),
     )
   }
 
