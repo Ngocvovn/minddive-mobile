@@ -18,6 +18,7 @@ import {
   Text,
   TextInput,
   View,
+  Image,
 } from 'react-native'
 import {
   NavigationScreenProp,
@@ -35,7 +36,7 @@ interface AddReflectionScreenState {
   image?: string
   feeling: string
   error?: string
-  reflections?: Array<Reflection>
+  reflections: Array<Reflection>
 }
 
 export class AddReflectionScreen extends Component<
@@ -60,25 +61,37 @@ export class AddReflectionScreen extends Component<
   }
 
   async componentDidMount() {
-    const dab = firebase.firestore()
     let user = firebase.auth().currentUser || { uid: '' }
-    let query = collection.where('createdBy', '==', user.uid)
+    let query = await collection.where('createdBy', '==', user.uid).get()
 
-    let reflections = await query.get()
-    let asd = reflections.docs
-    setTimeout(() => {
-      console.log('aa')
-    }, 1)
+    let reflections: Array<Reflection> = []
+    query.docs.forEach(doc => {
+      reflections.push(doc.data())
+    })
+    this.setState({ reflections: reflections })
   }
 
   public render(): React.ReactNode {
+    let reflectionViews = this.state.reflections.map((reflection, index) => {
+      return (
+        <View key={index}>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={{ uri: reflection.image }}
+          />
+          <Text>{reflection.text}</Text>
+          <Text>{reflection.createdAt.toDate().toLocaleDateString()}</Text>
+          <Text>{reflection.feeling}</Text>
+        </View>
+      )
+    })
     return (
       <View style={styles.container}>
         <Text style={styles.error}> {this.state.error}</Text>
         <Ionicons
-          name="md-checkmark-circle"
+          name="md-camera"
           size={32}
-          color="green"
+          color="black"
           onPress={this.addImage}
         />
 
@@ -98,6 +111,7 @@ export class AddReflectionScreen extends Component<
           placeholder="Feeling"
         />
         <Button onPress={this.addRelfection} title="Submit" />
+        {reflectionViews}
       </View>
     )
   }
@@ -108,7 +122,7 @@ export class AddReflectionScreen extends Component<
       image: this.state.image,
       text: this.state.text,
       feeling: Feeling.Happy,
-      createdAt: new Date(),
+      createdAt: firebase.firestore.Timestamp.now(),
       createdBy: user.uid,
     }
     console.log(reflection)

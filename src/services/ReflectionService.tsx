@@ -5,12 +5,12 @@ export enum Feeling {
   Sad = 'Sad',
 }
 export interface Reflection {
-  createdBy?: string
-  createdAt?: Date
+  createdBy: string
+  createdAt: firebase.firestore.Timestamp
   text?: string
   image?: string
   feeling?: Feeling
-  updatedAt?: Date
+  updatedAt?: firebase.firestore.Timestamp
 }
 
 export const collection = db.collection('reflections')
