@@ -1,10 +1,12 @@
 import * as firebase from 'firebase'
-import { ImagePicker } from 'expo'
 import uuid from 'uuid'
+import { Facebook, ImagePicker, Permissions } from 'expo'
 
 const storageRef = firebase.storage().ref()
 
-export async function uploadImage(image: ImagePicker.ImageInfo) {
+export async function uploadImage(
+  image: ImagePicker.ImageInfo,
+): Promise<string> {
   const imagesRef = storageRef.child(
     'images/' + uuid.v4() + findImageType(image),
   )
@@ -13,9 +15,10 @@ export async function uploadImage(image: ImagePicker.ImageInfo) {
     const blob = await res.blob()
     const imageRef = await imagesRef.put(blob)
     // link to store in reflection
-    let link: string = await imagesRef.getDownloadURL()
+    return await imagesRef.getDownloadURL()
   } catch (error) {
     console.log(error)
+    return ''
   }
 }
 
@@ -39,21 +42,21 @@ function findImageType(image: ImagePicker.ImageInfo): string {
   return type
 }
 
-// pick and upload image example
-/*private async pickImage(): Promise<void> {
-    const { status: existingStatus } = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL,
-    )
-    if (existingStatus === 'granted') {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-      })
+export async function pickImage(): Promise<string> {
+  const { status: existingStatus } = await Permissions.askAsync(
+    Permissions.CAMERA_ROLL,
+  )
+  if (existingStatus === 'granted') {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+    })
 
-      if (result.cancelled) {
-        return
-      }
-
-      await uploadImage(result)
+    if (result.cancelled) {
+      return ''
     }
-  } */
+
+    return await uploadImage(result)
+  }
+  return ''
+}

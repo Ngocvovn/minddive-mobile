@@ -139,12 +139,14 @@ const styles = StyleSheet.create({
   textInput: {
     margin: 10,
     paddingLeft: 20,
+    paddingBottom: 10,
   },
   error: {
     textAlign: 'center',
   },
   nameInput: {
     flex: 1,
+    paddingBottom: 10,
   },
   nameInputRow: {
     flexDirection: 'row',

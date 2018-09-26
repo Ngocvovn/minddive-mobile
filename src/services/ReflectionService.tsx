@@ -13,11 +13,11 @@ export interface Reflection {
   updatedAt?: Date
 }
 
-const collection = db.collection('reflections')
+export const collection = db.collection('reflections')
 
 export async function addReflection(reflection: Reflection) {
   try {
-    let response = await collection.add(reflection)
+    await collection.add(reflection)
   } catch (error) {
     console.log(error)
   }

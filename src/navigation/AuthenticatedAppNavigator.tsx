@@ -13,6 +13,7 @@ import {
 import * as firebase from 'firebase'
 
 import { withAuthenticatedUser } from '../services/AuthService'
+import { AddReflectionScreen } from '../screens/AddReflectionScreen'
 
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -113,7 +114,7 @@ class DetailsScreen extends React.Component<{
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: AddReflectionScreen,
     },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),
