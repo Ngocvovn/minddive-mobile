@@ -1,17 +1,8 @@
 import { Facebook, ImagePicker, Permissions } from 'expo'
 import * as firebase from 'firebase'
-import db from '../services/Db'
 import React, { Component } from 'react'
 import {
-  Feeling,
-  Reflection,
-  addReflection,
-  updateReflection,
-  deleteReflection,
-} from '../services/ReflectionService'
-import {
   Alert,
-  Button,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,7 +13,18 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
+import LogoText from '../components/Text/LogoText'
+import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
+import db from '../services/Db'
 import { uploadImage } from '../services/FileServices'
+import {
+  addReflection,
+  deleteReflection,
+  Feeling,
+  Reflection,
+  updateReflection,
+} from '../services/ReflectionService'
 import { SignUpScreen } from './SignUpScreen'
 
 interface LoginScreenProps {
@@ -52,10 +54,11 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
 
   public render(): React.ReactNode {
     return (
-      <View style={styles.container}>
+      <ImageBackgroundLayout>
         {this.state.error && (
           <Text style={styles.error}>{this.state.error}</Text>
         )}
+        <LogoText text="PregMind" />
         <TextInput
           autoCapitalize="none"
           autoCorrect={false}
@@ -71,7 +74,7 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
           onChangeText={password => this.setState({ password })}
           placeholder="Password"
         />
-        <Button
+        <PrimaryButton
           disabled={!this.validateInput()}
           onPress={this.loginWithEmailPassword}
           title="Log in"
@@ -88,7 +91,7 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
         >
           Forget password
         </Text>
-      </View>
+      </ImageBackgroundLayout>
     )
   }
 
