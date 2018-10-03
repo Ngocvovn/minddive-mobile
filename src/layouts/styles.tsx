@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
   },
+  bottomRightFixed: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20
+  },
 })
 
 export default styles

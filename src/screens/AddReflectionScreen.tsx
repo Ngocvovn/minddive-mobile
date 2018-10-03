@@ -9,6 +9,8 @@ import {
   collection,
 } from '../services/ReflectionService'
 import { pickImage } from '../services/FileServices'
+import DefaultLayout from '../layouts/DefaultLayout'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Alert,
@@ -42,9 +44,9 @@ interface AddReflectionScreenState {
 export class AddReflectionScreen extends Component<
   AddReflectionScreenProps,
   AddReflectionScreenState
-> {
+  > {
   public static navigationOptions: NavigationStackScreenOptions = {
-    title: 'Add Reflection',
+    title: 'Lisää merkintä',
   }
 
   constructor(props: AddReflectionScreenProps) {
@@ -54,39 +56,14 @@ export class AddReflectionScreen extends Component<
       image: '',
       feeling: '',
       error: '',
-      reflections: [],
     }
     this.addImage = this.addImage.bind(this)
-    this.addRelfection = this.addRelfection.bind(this)
-  }
-
-  async componentDidMount() {
-    let user = firebase.auth().currentUser || { uid: '' }
-    let query = await collection.where('createdBy', '==', user.uid).get()
-
-    let reflections: Array<Reflection> = []
-    query.docs.forEach(doc => {
-      reflections.push(doc.data())
-    })
-    this.setState({ reflections: reflections })
+    this.addNewReflection = this.addNewReflection.bind(this)
   }
 
   public render(): React.ReactNode {
-    let reflectionViews = this.state.reflections.map((reflection, index) => {
-      return (
-        <View key={index}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: reflection.image }}
-          />
-          <Text>{reflection.text}</Text>
-          <Text>{reflection.createdAt.toDate().toLocaleDateString()}</Text>
-          <Text>{reflection.feeling}</Text>
-        </View>
-      )
-    })
     return (
-      <View style={styles.container}>
+      <DefaultLayout>
         <Text style={styles.error}> {this.state.error}</Text>
         <Ionicons
           name="md-camera"
@@ -96,27 +73,26 @@ export class AddReflectionScreen extends Component<
         />
 
         <TextInput
-          autoCapitalize="none"
+          autoCapitalize="sentences"
           autoCorrect={false}
           style={styles.textInput}
           onChangeText={text => this.setState({ text })}
-          placeholder="Text"
+          placeholder="Merkinnän nimi"
         />
         <TextInput
           style={styles.textInput}
-          secureTextEntry={true}
-          autoCapitalize="none"
+          autoCapitalize="sentences"
           autoCorrect={false}
+          multiline={true}
           onChangeText={feeling => this.setState({ feeling })}
-          placeholder="Feeling"
+          placeholder="Kerro fiilikset"
         />
-        <Button onPress={this.addRelfection} title="Submit" />
-        {reflectionViews}
-      </View>
+        <PrimaryButton onPress={() => this.addNewReflection()} title="Tallenna" />
+      </DefaultLayout>
     )
   }
 
-  private async addRelfection() {
+  private async addNewReflection() {
     let user = firebase.auth().currentUser || { uid: '' }
     let reflection: Reflection = {
       image: this.state.image,
@@ -140,10 +116,6 @@ export class AddReflectionScreen extends Component<
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
   textInput: {
     margin: 10,
     paddingLeft: 20,
