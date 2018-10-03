@@ -1,6 +1,14 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
 
-const AppLoading = () => <View>Loading...</View>
+class AppLoading extends Component<{}> {
+  public render(): React.ReactNode {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    )
+  }
+}
 
 export default AppLoading

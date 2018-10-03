@@ -5,6 +5,7 @@ import { Font } from 'expo';
 import { RootNavigator } from './navigation/RootNavigator'
 import { AuthStateProvider } from './services/AuthService'
 
+import AppLoading from './components/Loading/AppLoading'
 
 import { YellowBox } from 'react-native'
 import _ from 'lodash'
@@ -45,7 +46,8 @@ export class App extends React.Component<{}, AppState> {
           <RootNavigator />
         </AuthStateProvider>
       )
-    } else
-      return null
+    } else {
+      return <AppLoading />
+    }
   }
 }
