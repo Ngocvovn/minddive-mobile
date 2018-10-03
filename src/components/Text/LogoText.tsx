@@ -13,9 +13,7 @@ class LogoText extends Component<LogoTextProps> {
 
   public render(): React.ReactNode {
     return (
-      <View style={styles.textContainer}>
-        <Text style={styles.logo}>{this.props.text}</Text>
-      </View>
+      <Text style={styles.logo}>{this.props.text}</Text>
     )
   }
 }

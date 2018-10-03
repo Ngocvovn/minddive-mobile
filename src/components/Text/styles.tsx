@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     fontFamily: 'grandhotel-regular',
     color: variables.purple,
     textAlign: 'center',
+    marginBottom: 20,
   },
   textContainer: {
     flex: 1,

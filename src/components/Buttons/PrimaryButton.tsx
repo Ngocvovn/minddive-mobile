@@ -5,7 +5,7 @@ import styles from './styles'
 interface PrimaryButtonProps {
   disabled?: boolean
   title: string
-  onPress(): void
+  onPress: void
 }
 
 class PrimaryButton extends Component<PrimaryButtonProps> {
@@ -14,7 +14,7 @@ class PrimaryButton extends Component<PrimaryButtonProps> {
     return (
       <TouchableOpacity
         style={styles.primaryButtonStyle}
-        onPress={() => onPress()}
+        onPress={onPress}
         disabled={disabled}
       >
         <Text style={styles.textStyle}>{title}</Text>

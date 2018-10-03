@@ -76,20 +76,20 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
         />
         <PrimaryButton
           disabled={!this.validateInput()}
-          onPress={this.loginWithEmailPassword}
+          onPress={() => this.loginWithEmailPassword()}
           title="Log in"
         />
         <Text
           style={[styles.signUpText, styles.signUpMargin]}
           onPress={() => this.props.navigation.navigate('SignUp')}
         >
-          Sign up as a new user!
+          Sign up as a new user
         </Text>
         <Text
           style={styles.signUpText}
           onPress={() => this.props.navigation.navigate('PasswordRecovery')}
         >
-          Forget password
+          Forgot password?
         </Text>
       </ImageBackgroundLayout>
     )

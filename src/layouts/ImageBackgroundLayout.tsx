@@ -8,7 +8,7 @@ const background = require('./imageBackground.png')
 const ImageBackgroundLayout = props => (
   <ImageBackground
     source={background}
-    style={{ width: '100%', height: '100%' }}
+    style={styles.backgroundStyle}
   >
     <View style={styles.imageBackground}>{props.children}</View>
   </ImageBackground>

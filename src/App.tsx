@@ -5,6 +5,7 @@ import { Font } from 'expo';
 import { RootNavigator } from './navigation/RootNavigator'
 import { AuthStateProvider } from './services/AuthService'
 
+
 import { YellowBox } from 'react-native'
 import _ from 'lodash'
 YellowBox.ignoreWarnings(['Setting a timer'])
@@ -28,11 +29,13 @@ export class App extends React.Component<{}, AppState> {
   }
 
   public async componentDidMount(): void {
-    await Font.loadAsync({
-      'grandhotel-regular': require('../assets/fonts/GrandHotel-Regular.ttf'),
-    })
+    if (!this.state.fonfLoaded) {
+      await Font.loadAsync({
+        'grandhotel-regular': require('../assets/fonts/GrandHotel-Regular.ttf'),
+      })
 
-    this.setState({ fontLoaded: true })
+      this.setState({ fontLoaded: true })
+    }
   }
 
   public render(): React.ReactElement<{}> {
