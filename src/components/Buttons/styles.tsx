@@ -9,12 +9,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   primaryButtonStyle: {
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingLeft: 60,
+    paddingRight: 60,
     paddingTop: 10,
     paddingBottom: 10,
     backgroundColor: variables.purple,
-    borderRadius: 5,
+    borderRadius: 25,
     alignSelf: 'center',
   },
   secondaryButtonStyle: {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: variables.turquoise,
+    backgroundColor: variables.purple,
   },
 })
 

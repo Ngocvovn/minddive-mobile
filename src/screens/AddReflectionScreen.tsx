@@ -101,7 +101,6 @@ export class AddReflectionScreen extends Component<
       createdAt: firebase.firestore.Timestamp.now(),
       createdBy: user.uid,
     }
-    console.log(reflection)
     try {
       await addReflection(reflection)
     } catch (e) {

@@ -12,12 +12,14 @@ import { pickImage } from '../services/FileServices'
 import DefaultLayout from '../layouts/DefaultLayout'
 import BottomRightFixed from '../layouts/BottomRightFixed'
 import RoundButton from '../components/Buttons/RoundButton'
+import DiaryItem from '../components/Diary/DiaryItem'
 
 import { Ionicons } from '@expo/vector-icons'
 import {
   Alert,
   Button,
   ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -69,24 +71,18 @@ export class DiaryScreen extends Component<
     this.setState({ reflections: reflections })
   }
 
+  keyExtractor = (item, index) => 'diaryItem' + index;
+
+  renderItem = ({ item }) => (
+    <DiaryItem entry={item} />
+  );
+
   public render(): React.ReactNode {
-    let reflectionViews = this.state.reflections.map((reflection, index) => {
-      return (
-        <View key={index}>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: reflection.image }}
-          />
-          <Text>{reflection.text}</Text>
-          <Text>{reflection.createdAt.toDate().toLocaleDateString()}</Text>
-          <Text>{reflection.feeling}</Text>
-        </View>
-      )
-    })
     return (
       <DefaultLayout>
-        <Text style={styles.error}> {this.state.error}</Text>
-        {reflectionViews}
+        <FlatList data={this.state.reflections}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderItem} />
         <BottomRightFixed>
           <RoundButton
             onPress={() => this.props.navigation.navigate('AddReflection')} />

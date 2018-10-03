@@ -6,7 +6,10 @@ const styles = StyleSheet.create({
   default: {
     flex: 1,
     justifyContent: 'center',
-    padding: 20,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    height: '100%',
     backgroundColor: variables.lightGrey,
   },
   backgroundStyle: {
