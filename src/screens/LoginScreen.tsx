@@ -76,7 +76,7 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
         />
         <PrimaryButton
           disabled={!this.validateInput()}
-          onPress={() => this.loginWithEmailPassword()}
+          onPress={this.loginWithEmailPassword}
           title="Log in"
         />
         <Text

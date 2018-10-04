@@ -6,10 +6,7 @@ import styles from './styles'
 const background = require('./imageBackground.png')
 
 const ImageBackgroundLayout = props => (
-  <ImageBackground
-    source={background}
-    style={styles.backgroundStyle}
-  >
+  <ImageBackground source={background} style={styles.backgroundStyle}>
     <View style={styles.imageBackground}>{props.children}</View>
   </ImageBackground>
 )

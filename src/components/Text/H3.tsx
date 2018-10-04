@@ -9,9 +9,7 @@ interface H3Props {
 class H3 extends Component<H3Props> {
   public render(): React.ReactNode {
     const { text } = this.props
-    return (
-      <Text style={styles.h3}>{this.props.text}</Text>
-    )
+    return <Text style={styles.h3}>{this.props.text}</Text>
   }
 }
 

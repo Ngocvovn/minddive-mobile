@@ -1,31 +1,31 @@
+import { Ionicons } from '@expo/vector-icons'
 import { Facebook } from 'expo'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import { SignUpScreen } from './SignUpScreen'
-import {
-  addReflection,
-  Reflection,
-  Feeling,
-  collection,
-} from '../services/ReflectionService'
-import { pickImage } from '../services/FileServices'
-import DefaultLayout from '../layouts/DefaultLayout'
-import PrimaryButton from '../components/Buttons/PrimaryButton'
-import { Ionicons } from '@expo/vector-icons'
 import {
   Alert,
   Button,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   View,
-  Image,
 } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
+import DefaultLayout from '../layouts/DefaultLayout'
+import { pickImage } from '../services/FileServices'
+import {
+  addReflection,
+  collection,
+  Feeling,
+  Reflection,
+} from '../services/ReflectionService'
+import { SignUpScreen } from './SignUpScreen'
 
 import db from '../services/Db'
 
@@ -38,13 +38,13 @@ interface AddReflectionScreenState {
   image?: string
   feeling: string
   error?: string
-  reflections: Array<Reflection>
+  reflections: Reflection[]
 }
 
 export class AddReflectionScreen extends Component<
   AddReflectionScreenProps,
   AddReflectionScreenState
-  > {
+> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Lisää merkintä',
   }
@@ -53,9 +53,9 @@ export class AddReflectionScreen extends Component<
     super(props)
     this.state = {
       text: '',
-      image: '',
       feeling: '',
       error: '',
+      reflections: [],
     }
     this.addImage = this.addImage.bind(this)
     this.addNewReflection = this.addNewReflection.bind(this)
@@ -71,7 +71,6 @@ export class AddReflectionScreen extends Component<
           color="black"
           onPress={this.addImage}
         />
-
         <TextInput
           autoCapitalize="sentences"
           autoCorrect={false}
@@ -87,19 +86,24 @@ export class AddReflectionScreen extends Component<
           onChangeText={feeling => this.setState({ feeling })}
           placeholder="Fiilis"
         />
-        <PrimaryButton onPress={() => this.addNewReflection()} title="Tallenna" />
+        <PrimaryButton
+          onPress={() => this.addNewReflection()}
+          title="Tallenna"
+        />
       </DefaultLayout>
     )
   }
 
   private async addNewReflection() {
-    let user = firebase.auth().currentUser || { uid: '' }
-    let reflection: Reflection = {
-      image: this.state.image,
+    const user = firebase.auth().currentUser || { uid: '' }
+    const reflection: Reflection = {
       text: this.state.text,
       feeling: Feeling.Happy,
       createdAt: firebase.firestore.Timestamp.now(),
       createdBy: user.uid,
+    }
+    if (this.state.image) {
+      reflection.image = this.state.image
     }
     try {
       await addReflection(reflection)

@@ -15,6 +15,7 @@ import * as firebase from 'firebase'
 import { withAuthenticatedUser } from '../services/AuthService'
 import { AddReflectionScreen } from '../screens/AddReflectionScreen'
 import { DiaryScreen } from '../screens/DiaryScreen'
+import { HomeScreen } from '../screens/HomeScreen'
 
 import variables from '../styles/variables'
 
@@ -22,16 +23,10 @@ interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
 }
 
+/*
 class HomeScreen extends React.Component<HomeScreenProps> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Home',
-    headerRight: (
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="Info"
-        color="#fff"
-      />
-    ),
   }
 
   public render(): React.ReactNode {
@@ -57,7 +52,7 @@ class HomeScreen extends React.Component<HomeScreenProps> {
       </View>
     )
   }
-}
+} */
 
 class DetailsScreen extends React.Component<{
   navigation: NavigationScreenProp<
@@ -117,7 +112,7 @@ class DetailsScreen extends React.Component<{
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
-      screen: DiaryScreen,
+      screen: HomeScreen,
     },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),
@@ -125,6 +120,9 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     AddReflection: {
       screen: AddReflectionScreen,
     },
+    Diary: {
+      screen: DiaryScreen
+    }
   },
   {
     initialRouteName: 'Home',
