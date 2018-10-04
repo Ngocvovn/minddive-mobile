@@ -14,6 +14,9 @@ import * as firebase from 'firebase'
 
 import { withAuthenticatedUser } from '../services/AuthService'
 import { AddReflectionScreen } from '../screens/AddReflectionScreen'
+import { DiaryScreen } from '../screens/DiaryScreen'
+
+import variables from '../styles/variables'
 
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -58,21 +61,21 @@ class HomeScreen extends React.Component<HomeScreenProps> {
 
 class DetailsScreen extends React.Component<{
   navigation: NavigationScreenProp<
-    {},
-    {
-      itemId: number
-      otherParam: string
-    }
+  {},
+  {
+    itemId: number
+    otherParam: string
+  }
   >
   user: firebase.User
 }> {
   public static navigationOptions: NavigationScreenConfig<
     NavigationStackScreenOptions
-  > = ({ navigation }) => {
-    return {
-      title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+    > = ({ navigation }) => {
+      return {
+        title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+      }
     }
-  }
 
   public render(): React.ReactNode {
     const { navigation, user } = this.props
@@ -114,17 +117,20 @@ class DetailsScreen extends React.Component<{
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
-      screen: AddReflectionScreen,
+      screen: DiaryScreen,
     },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),
+    },
+    AddReflection: {
+      screen: AddReflectionScreen,
     },
   },
   {
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#f4511e',
+        backgroundColor: variables.lightPurple,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
