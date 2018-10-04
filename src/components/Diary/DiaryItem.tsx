@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, Image, } from 'react-native'
-import styles from './styles'
+import { Image, Text, View, } from 'react-native'
 import {
   Reflection,
-} from '../services/ReflectionService'
+} from '../../services/ReflectionService'
+import H3 from '../Text/H3'
+import Paragraph from '../Text/Paragraph'
+import styles from './styles'
 
 interface DiaryItemProps {
   entry: Reflection
@@ -11,20 +13,22 @@ interface DiaryItemProps {
 
 class DiaryItem extends Component<DiaryItemProps> {
   public render(): React.ReactNode {
-    console.log(this.props.entry)
     const { entry } = this.props
     return (
       <View style={styles.diaryItem}>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>{entry.createdAt.toDate().toLocaleDateString()}</Text>
         </View>
-        {entry.image.length > 0 &&
+        {entry.image &&
           <Image
-            style={{ width: 50, height: 50 }}
+            resizeMode="cover"
+            style={styles.image}
             source={{ uri: entry.image }}
           />}
-        <Text>{entry.text}</Text>
-        <Text>{entry.feeling}</Text>
+        <View style={styles.text}>
+          <H3 text={entry.feeling} />
+          <Paragraph text={entry.text} />
+        </View>
       </View>
     )
   }

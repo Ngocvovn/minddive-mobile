@@ -75,17 +75,17 @@ export class AddReflectionScreen extends Component<
         <TextInput
           autoCapitalize="sentences"
           autoCorrect={false}
+          multiline={true}
           style={styles.textInput}
           onChangeText={text => this.setState({ text })}
-          placeholder="Merkinnän nimi"
+          placeholder="Kirjoita merkintä"
         />
         <TextInput
           style={styles.textInput}
           autoCapitalize="sentences"
           autoCorrect={false}
-          multiline={true}
           onChangeText={feeling => this.setState({ feeling })}
-          placeholder="Kerro fiilikset"
+          placeholder="Fiilis"
         />
         <PrimaryButton onPress={() => this.addNewReflection()} title="Tallenna" />
       </DefaultLayout>

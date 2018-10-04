@@ -71,7 +71,7 @@ export class DiaryScreen extends Component<
     this.setState({ reflections: reflections })
   }
 
-  keyExtractor = (item, index) => 'diaryItem' + index;
+  keyExtractor = (item, index) => 'diaryItem' + index
 
   renderItem = ({ item }) => (
     <DiaryItem entry={item} />

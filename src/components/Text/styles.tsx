@@ -15,6 +15,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  paragraph: {
+    fontSize: variables.smallFont,
+    color: variables.dark
+  },
+  h3: {
+    fontSize: variables.mediumFont,
+    fontWeight: 'bold',
+    color: variables.dark,
+    marginBottom: 5
+  }
 })
 
 export default styles
