@@ -44,7 +44,7 @@ interface AddReflectionScreenState {
 export class AddReflectionScreen extends Component<
   AddReflectionScreenProps,
   AddReflectionScreenState
-  > {
+> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Lisää merkintä',
   }
@@ -53,9 +53,9 @@ export class AddReflectionScreen extends Component<
     super(props)
     this.state = {
       text: '',
-      image: '',
       feeling: '',
       error: '',
+      reflections: [],
     }
     this.addImage = this.addImage.bind(this)
     this.addNewReflection = this.addNewReflection.bind(this)
@@ -87,7 +87,10 @@ export class AddReflectionScreen extends Component<
           onChangeText={feeling => this.setState({ feeling })}
           placeholder="Kerro fiilikset"
         />
-        <PrimaryButton onPress={() => this.addNewReflection()} title="Tallenna" />
+        <PrimaryButton
+          onPress={() => this.addNewReflection()}
+          title="Tallenna"
+        />
       </DefaultLayout>
     )
   }
@@ -95,11 +98,14 @@ export class AddReflectionScreen extends Component<
   private async addNewReflection() {
     let user = firebase.auth().currentUser || { uid: '' }
     let reflection: Reflection = {
-      image: this.state.image,
       text: this.state.text,
       feeling: Feeling.Happy,
       createdAt: firebase.firestore.Timestamp.now(),
       createdBy: user.uid,
+    }
+    if (this.state.image) {
+      console.log('image')
+      reflection.image = this.state.image
     }
     try {
       await addReflection(reflection)

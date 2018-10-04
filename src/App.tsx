@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { Font } from 'expo';
+import { Font } from 'expo'
 
 import { RootNavigator } from './navigation/RootNavigator'
 import { AuthStateProvider } from './services/AuthService'
@@ -18,19 +18,19 @@ console.warn = (message: any) => {
 }
 
 interface AppState {
-  text: string
+  fontLoaded: boolean
 }
 
 export class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props)
     this.state = {
-      fontLoaded: false
+      fontLoaded: false,
     }
   }
 
-  public async componentDidMount(): void {
-    if (!this.state.fonfLoaded) {
+  public async componentDidMount(): Promise<void> {
+    if (!this.state.fontLoaded) {
       await Font.loadAsync({
         'grandhotel-regular': require('../assets/fonts/GrandHotel-Regular.ttf'),
       })
