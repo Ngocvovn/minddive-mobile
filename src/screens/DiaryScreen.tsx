@@ -38,7 +38,7 @@ interface DiaryScreenProps {
 
 interface DiaryScreenState {
   error?: string
-  reflections: Array<Reflection>
+  reflections: Reflection[]
 }
 
 export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {

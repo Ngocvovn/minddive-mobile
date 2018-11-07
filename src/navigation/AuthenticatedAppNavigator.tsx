@@ -8,12 +8,14 @@ import {
   NavigationScreenConfig,
   NavigationScreenProp,
   NavigationStackScreenOptions,
+  createBottomTabNavigator 
 } from 'react-navigation'
 
 import * as firebase from 'firebase'
 
 import { withAuthenticatedUser } from '../services/AuthService'
 import { AddReflectionScreen } from '../screens/AddReflectionScreen'
+import { SessionInformationScreen } from '../screens/SessionInformationScreen'
 import { DiaryScreen } from '../screens/DiaryScreen'
 import { HomeScreen } from '../screens/HomeScreen'
 
@@ -66,11 +68,11 @@ class DetailsScreen extends React.Component<{
 }> {
   public static navigationOptions: NavigationScreenConfig<
     NavigationStackScreenOptions
-    > = ({ navigation }) => {
-      return {
-        title: navigation.getParam('otherParam', 'A Nested Details Screen'),
-      }
+  > = ({ navigation }) => {
+    return {
+      title: navigation.getParam('otherParam', 'A Nested Details Screen'),
     }
+  }
 
   public render(): React.ReactNode {
     const { navigation, user } = this.props
@@ -121,14 +123,17 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
       screen: AddReflectionScreen,
     },
     Diary: {
-      screen: DiaryScreen
-    }
+      screen: DiaryScreen,
+    },
+    Information: {
+      screen: SessionInformationScreen,
+    },
   },
   {
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: variables.lightPurple,
+        backgroundColor: variables.purpleGrey,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
@@ -137,3 +142,7 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
 )
+
+export default createBottomTabNavigator({
+  Diary: DiaryScreen,
+});
