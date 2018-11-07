@@ -31,7 +31,10 @@ export default class ScriptPlayer extends Component<
   ScriptPlayerProps,
   ScriptPlayerState
 > {
-  public static getDerivedStateFromProps = (props, state) => {
+  public static getDerivedStateFromProps = (
+    props: ScriptPlayerProps,
+    state: ScriptPlayerState,
+  ) => {
     const newScripts: object[] = []
     props.script.map((item: object, i: number) => {
       if (state.script.length === 0 || i > state.script.length - 1) {
@@ -42,7 +45,7 @@ export default class ScriptPlayer extends Component<
     })
     return { script: state.script.concat(newScripts) }
   }
-  constructor(props) {
+  constructor(props: ScriptPlayerProps) {
     super(props)
     this.state = {
       script: [],
@@ -50,7 +53,8 @@ export default class ScriptPlayer extends Component<
     }
   }
 
-  public keyExtractor = (item, index) => item.timeStarts.toString()
+  public keyExtractor = (item: { timeStarts: number }, index: number) =>
+    item.timeStarts.toString()
 
   /** 
   public componentDidUpdate = (prevProps, prevState) => {

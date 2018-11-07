@@ -8,7 +8,6 @@ import {
   NavigationScreenConfig,
   NavigationScreenProp,
   NavigationStackScreenOptions,
-  createBottomTabNavigator 
 } from 'react-navigation'
 
 import * as firebase from 'firebase'
@@ -142,7 +141,3 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
 )
-
-export default createBottomTabNavigator({
-  Diary: DiaryScreen,
-});

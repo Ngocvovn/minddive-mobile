@@ -41,7 +41,7 @@ export default class AudioPlayer extends Component<
   AudioPlayerProps,
   AudioPlayerState
 > {
-  constructor(props) {
+  constructor(props: AudioPlayerProps) {
     super(props)
     this.index = 0
     this.isSeeking = false
