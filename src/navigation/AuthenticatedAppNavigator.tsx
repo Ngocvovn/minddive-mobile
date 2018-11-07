@@ -9,6 +9,7 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import { AddUserInfoScreen } from '../screens/AddUserInfoScreen'
 
 import * as firebase from 'firebase'
 
@@ -61,21 +62,21 @@ class HomeScreen extends React.Component<HomeScreenProps> {
 
 class DetailsScreen extends React.Component<{
   navigation: NavigationScreenProp<
-  {},
-  {
-    itemId: number
-    otherParam: string
-  }
+    {},
+    {
+      itemId: number
+      otherParam: string
+    }
   >
   user: firebase.User
 }> {
   public static navigationOptions: NavigationScreenConfig<
     NavigationStackScreenOptions
-    > = ({ navigation }) => {
-      return {
-        title: navigation.getParam('otherParam', 'A Nested Details Screen'),
-      }
+  > = ({ navigation }) => {
+    return {
+      title: navigation.getParam('otherParam', 'A Nested Details Screen'),
     }
+  }
 
   public render(): React.ReactNode {
     const { navigation, user } = this.props
@@ -117,7 +118,7 @@ class DetailsScreen extends React.Component<{
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
-      screen: DiaryScreen,
+      screen: AddUserInfoScreen,
     },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),

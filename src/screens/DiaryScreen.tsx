@@ -13,7 +13,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import BottomRightFixed from '../layouts/BottomRightFixed'
 import RoundButton from '../components/Buttons/RoundButton'
 import DiaryItem from '../components/Diary/DiaryItem'
-
+import { observer } from 'mobx-react'
 import { Ionicons } from '@expo/vector-icons'
 import {
   Alert,
@@ -32,6 +32,7 @@ import {
 } from 'react-navigation'
 
 import db from '../services/Db'
+import DiaryStore from '../stores/DiaryStore'
 
 interface DiaryScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -42,6 +43,7 @@ interface DiaryScreenState {
   reflections: Array<Reflection>
 }
 
+@observer
 export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Päiväkirja',
@@ -56,15 +58,7 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
   }
 
   async componentDidMount() {
-    let user = firebase.auth().currentUser || { uid: '' }
-    console.log('user', user)
-    let query = await collection.where('createdBy', '==', user.uid).get()
-
-    let reflections: Array<Reflection> = []
-    query.docs.forEach(doc => {
-      reflections.push(doc.data())
-    })
-    this.setState({ reflections: reflections })
+    await DiaryStore.getAll()
   }
 
   keyExtractor = (item, index) => 'diaryItem' + index
@@ -75,7 +69,7 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
     return (
       <DefaultLayout>
         <FlatList
-          data={this.state.reflections}
+          data={DiaryStore.reflections}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
         />

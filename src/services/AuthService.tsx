@@ -1,21 +1,12 @@
 import * as firebase from 'firebase'
-require('firebase/firestore')
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import * as React from 'react'
 import { AsyncStorage, Button, Text, View } from 'react-native'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation'
-
+import { init } from '../services/FireBase'
 const { Consumer, Provider } = React.createContext<null | firebase.User>(null)
 
-firebase.initializeApp({
-  apiKey: 'AIzaSyAYlM5kr5rYCfCY9SzkqDZR19VfKygoFxk',
-  authDomain: 'mindive-449e6.firebaseapp.com',
-  databaseURL: 'https://mindive-449e6.firebaseio.com',
-  projectId: 'mindive-449e6',
-  storageBucket: 'mindive-449e6.appspot.com',
-  messagingSenderId: '49215748476',
-})
-
+init()
 interface AuthStateState {
   user: firebase.User | null
 }
@@ -79,6 +70,5 @@ export function withAuthenticatedUser<P>(
       </Consumer>
     )
   }
-
   return hoistNonReactStatics(withNavigation(Inner), Component)
 }

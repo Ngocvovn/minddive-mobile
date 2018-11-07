@@ -13,11 +13,18 @@ export interface Reflection {
   updatedAt?: firebase.firestore.Timestamp
 }
 
+export interface UserInfo {
+  dueDate?: firebase.firestore.Timestamp
+  isMother?: boolean
+}
+
 export const collection = db.collection('reflections')
+export const userCollection = db.collection('users')
 
 export async function addReflection(reflection: Reflection) {
   try {
-    await collection.add(reflection)
+    let res = await collection.add(reflection)
+    return res
   } catch (error) {
     console.log(error)
   }
@@ -39,6 +46,14 @@ export async function updateReflection(uid: string, newReflection: Reflection) {
   }
 }
 
+export async function addInfo(userInfo: UserInfo) {
+  let user = firebase.auth().currentUser || { uid: '' }
+  try {
+    await userCollection.doc(user.uid).set(userInfo)
+  } catch (e) {
+    console.log(e)
+  }
+}
 // example code
 /*async function add() {
   let user = firebase.auth().currentUser

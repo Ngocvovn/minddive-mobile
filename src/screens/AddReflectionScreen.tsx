@@ -22,10 +22,12 @@ import {
   View,
   Image,
 } from 'react-native'
+import { observer } from 'mobx-react'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import DiaryStore from '../stores/DiaryStore'
 
 import db from '../services/Db'
 
@@ -41,6 +43,7 @@ interface AddReflectionScreenState {
   reflections: Array<Reflection>
 }
 
+@observer
 export class AddReflectionScreen extends Component<
   AddReflectionScreenProps,
   AddReflectionScreenState
@@ -104,11 +107,10 @@ export class AddReflectionScreen extends Component<
       createdBy: user.uid,
     }
     if (this.state.image) {
-      console.log('image')
       reflection.image = this.state.image
     }
     try {
-      await addReflection(reflection)
+      await DiaryStore.addReflection(reflection)
     } catch (e) {
       console.log(e)
     }
