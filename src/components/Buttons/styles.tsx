@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: variables.purple,
   },
+  roundButtonStyleGreen: {
+    backgroundColor: variables.turquoise,
+  },
 })
 
 export default styles

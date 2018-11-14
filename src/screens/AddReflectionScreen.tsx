@@ -12,6 +12,7 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import { observer } from 'mobx-react'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
@@ -26,6 +27,7 @@ import {
   Reflection,
 } from '../services/ReflectionService'
 import { SignUpScreen } from './SignUpScreen'
+import DiaryStore from '../stores/DiaryStore'
 
 import db from '../services/Db'
 
@@ -41,6 +43,7 @@ interface AddReflectionScreenState {
   reflections: Reflection[]
 }
 
+@observer
 export class AddReflectionScreen extends Component<
   AddReflectionScreenProps,
   AddReflectionScreenState
@@ -106,7 +109,7 @@ export class AddReflectionScreen extends Component<
       reflection.image = this.state.image
     }
     try {
-      await addReflection(reflection)
+      await DiaryStore.addReflection(reflection)
     } catch (e) {
       console.log(e)
     }

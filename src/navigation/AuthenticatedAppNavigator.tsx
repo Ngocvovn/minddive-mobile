@@ -9,6 +9,7 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import { AddUserInfoScreen } from '../screens/AddUserInfoScreen'
 
 import * as firebase from 'firebase'
 
@@ -57,11 +58,11 @@ class HomeScreen extends React.Component<HomeScreenProps> {
 
 class DetailsScreen extends React.Component<{
   navigation: NavigationScreenProp<
-  {},
-  {
-    itemId: number
-    otherParam: string
-  }
+    {},
+    {
+      itemId: number
+      otherParam: string
+    }
   >
   user: firebase.User
 }> {
@@ -115,6 +116,9 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     Home: {
       screen: HomeScreen,
     },
+    AddUser: {
+      screen: AddUserInfoScreen,
+    },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),
     },
@@ -129,7 +133,7 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'AddUser',
     navigationOptions: {
       headerStyle: {
         backgroundColor: variables.purpleGrey,
@@ -141,3 +145,4 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
 )
+

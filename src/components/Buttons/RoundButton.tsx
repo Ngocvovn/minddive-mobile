@@ -5,18 +5,32 @@ import styles from './styles'
 
 interface RoundButtonProps {
   disabled?: boolean
+  children?: React.ReactNode
   onPress: (event: GestureResponderEvent) => void
 }
 
 const RoundButton: React.SFC<RoundButtonProps> = props => {
-  const { onPress, disabled } = props
+  const { onPress, disabled, children } = props
   return (
     <TouchableOpacity
       style={styles.roundButtonStyle}
       onPress={onPress}
       disabled={disabled}
     >
-      <Ionicons name="md-add" size={32} color="white" />
+      {children}
+    </TouchableOpacity>
+  )
+}
+
+export const RoundButtonGreen: React.SFC<RoundButtonProps> = props => {
+  const { onPress, disabled, children } = props
+  return (
+    <TouchableOpacity
+      style={[styles.roundButtonStyle, styles.roundButtonStyleGreen]}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      {children}
     </TouchableOpacity>
   )
 }

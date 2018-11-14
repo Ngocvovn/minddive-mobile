@@ -9,10 +9,10 @@ interface PrimaryButtonProps {
 }
 
 const PrimaryButton: React.SFC<PrimaryButtonProps> = props => {
-  const { title, onPress, disabled } = props
+  const { title, onPress, disabled, style } = props
   return (
     <TouchableOpacity
-      style={styles.primaryButtonStyle}
+      style={[styles.primaryButtonStyle, style]}
       onPress={onPress}
       disabled={disabled}
     >

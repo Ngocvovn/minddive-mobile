@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   h3: {
     fontSize: variables.mediumFont,
     fontWeight: 'bold',
-    color: variables.dark,
-    marginBottom: 5
+    color: variables.purple,
+    marginBottom: 5,
   }
 })
 

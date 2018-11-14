@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native'
 import Slider from 'react-native-slider'
+import { RoundButtonGreen } from '../Buttons/RoundButton'
 
 // https://github.com/GetStream/react-native-audio-player
 
@@ -94,6 +95,7 @@ export default class AudioPlayer extends Component<
     )
     this.playbackInstance = sound
 
+
     this._updateScreenForLoading(false)
   }
 
@@ -113,6 +115,7 @@ export default class AudioPlayer extends Component<
   }
 
   public _onPlaybackStatusUpdate = status => {
+    console.log(status)
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
@@ -251,13 +254,9 @@ export default class AudioPlayer extends Component<
   }
 
   public render(): React.ReactNode {
+    console.log(this.state.isLoading)
     return (
       <View style={styles.container}>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.text}>
-            {this.state.isBuffering ? BUFFERING_STRING : this._getTimestamp()}
-          </Text>
-        </View>
         <View
           style={[
             styles.buttonsContainerBase,
@@ -267,36 +266,41 @@ export default class AudioPlayer extends Component<
             },
           ]}
         >
-          <TouchableHighlight
-            onPress={this._onPlayPausePressed}
-            disabled={this.state.isLoading}
+          <View
+            style={[
+              styles.playbackContainer,
+              {
+                opacity: this.state.isLoading ? DISABLED_OPACITY : 1.0,
+              },
+            ]}
           >
-            <View>
-              {this.state.isPlaying ? (
-                <MaterialIcons name="pause" size={40} color="#56D5FA" />
-              ) : (
-                <MaterialIcons name="play-arrow" size={40} color="#56D5FA" />
-              )}
-            </View>
-          </TouchableHighlight>
-        </View>
-        <View
-          style={[
-            styles.playbackContainer,
-            {
-              opacity: this.state.isLoading ? DISABLED_OPACITY : 1.0,
-            },
-          ]}
-        >
-          <Slider
-            style={styles.playbackSlider}
-            value={this._getSeekSliderPosition()}
-            onValueChange={this._onSeekSliderValueChange}
-            onSlidingComplete={this._onSeekSliderSlidingComplete}
-            thumbTintColor="#000000"
-            minimumTrackTintColor="#4CCFF9"
-            disabled={this.state.isLoading}
-          />
+            <Slider
+              style={styles.playbackSlider}
+              value={this._getSeekSliderPosition()}
+              onValueChange={this._onSeekSliderValueChange}
+              onSlidingComplete={this._onSeekSliderSlidingComplete}
+              thumbTintColor="#000000"
+              minimumTrackTintColor="#4CCFF9"
+              disabled={this.state.isLoading}
+            />
+          </View>
+          <View>
+            {this.state.isPlaying ? (
+              <RoundButtonGreen
+                onPress={this._onPlayPausePressed}
+                disabled={this.state.isLoading}
+              >
+                <MaterialIcons name="pause" size={40} color="white" />
+              </RoundButtonGreen>
+            ) : (
+              <RoundButtonGreen
+                onPress={this._onPlayPausePressed}
+                disabled={this.state.isLoading}
+              >
+                <MaterialIcons name="play-arrow" size={40} color="white" />
+              </RoundButtonGreen>
+            )}
+          </View>
         </View>
       </View>
     )
@@ -305,12 +309,9 @@ export default class AudioPlayer extends Component<
 
 const styles = StyleSheet.create({
   container: {
-    height: 125,
+    height: 60,
     alignItems: 'center',
-  },
-  detailsContainer: {
-    height: 40,
-    alignItems: 'center',
+    marginBottom: 20,
   },
   playbackContainer: {
     flex: 1,
@@ -321,6 +322,7 @@ const styles = StyleSheet.create({
   },
   playbackSlider: {
     alignSelf: 'stretch',
+    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
   },
@@ -335,12 +337,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonsContainerTopRow: {
-    maxHeight: 40,
-  },
-  buttonsContainerMiddleRow: {
-    maxHeight: 40,
-    alignSelf: 'stretch',
-    paddingRight: 20,
+    maxHeight: 60,
   },
   volumeSlider: {
     width: DEVICE_WIDTH - 80,
@@ -349,3 +346,13 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
 })
+
+/*
+
+ <View style={styles.detailsContainer}>
+          <Text style={styles.text}>
+            {this.state.isBuffering ? BUFFERING_STRING : this._getTimestamp()}
+          </Text>
+        </View>
+
+*/

@@ -20,7 +20,6 @@ console.warn = (message: any) => {
 interface AppState {
   fontLoaded: boolean
 }
-
 export class App extends React.Component<{}, AppState> {
   constructor(props: {}) {
     super(props)

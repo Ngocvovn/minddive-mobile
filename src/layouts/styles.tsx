@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
     right: 20,
     bottom: 20
   },
+  textboxwhite: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    padding: 15,
+  }
 })
 
 export default styles

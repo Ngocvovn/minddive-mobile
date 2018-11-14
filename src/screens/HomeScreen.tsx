@@ -1,20 +1,23 @@
 import { Facebook } from 'expo'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import PrimaryButton from '../components/Buttons/PrimaryButton'
-import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
-
-
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Button, ScrollView, StyleSheet, Text, TextInput, View,  Dimensions } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
+import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
 
-import LogoText from '../components/Text/LogoText';
+import LogoText from '../components/Text/LogoText'
 import db from '../services/Db'
 
+import SessionInfo from '../components/Sessions/SessionInfo'
 import { DiaryScreen } from '../screens/DiaryScreen'
+
+import sessions from '../sessions'
+
+const CURRENT_WEEK = 21
 
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -24,7 +27,18 @@ interface HomeScreenState {
   error?: string
 }
 
+const { width } = Dimensions.get('window');
+
+
 export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
+
+  public const sessionCards = Object.keys(sessions).map(s => {
+    return (
+      <SessionInfo key={sessions[s].default.week.toString()} 
+      navigate={week => this.navigate(week)}
+      session={sessions[s].default} />
+    )
+  })
   constructor(props: HomeScreenProps) {
     super(props)
     this.state = {
@@ -32,18 +46,26 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     }
   }
 
+  public navigate = week => {
+    this.props.navigation.navigate('Information', { session: sessions[week] })
+  }
+
   public render(): React.ReactNode {
     return (
       <ImageBackgroundLayout>
-        <View>
-          <LogoText text="PregMind" />
+        <View style={styles.container}>
+          <ScrollView
+            horizontal={true}
+            decelerationRate={0}
+            snapToInterval={width - 60}
+            snapToAlignment={'center'}
+            showsHorizontalScrollIndicator={false}
+          >
+            {this.sessionCards}
+          </ScrollView>
           <PrimaryButton
             title="Päiväkirja"
             onPress={() => this.props.navigation.navigate('Diary')}
-          />
-          <PrimaryButton
-            title="Sessio"
-            onPress={() => this.props.navigation.navigate('Information')}
           />
         </View>
       </ImageBackgroundLayout>
@@ -52,7 +74,21 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   error: {
     textAlign: 'center',
   },
 })
+
+/** 
+<PrimaryButton
+            title="Päiväkirja"
+            onPress={() => this.props.navigation.navigate('Diary')}
+          />
+          <PrimaryButton
+            title="Sessio"
+            onPress={() => this.props.navigation.navigate('Information')}
+          />
+*/
