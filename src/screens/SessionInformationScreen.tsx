@@ -43,11 +43,15 @@ export class SessionInformationScreen extends Component {
     this.setState({ timestamp })
   }
   public render(): React.ReactNode {
-    console.log(this.state.session)
     const { audio, script } = this.state.session.information
+    const pictures = this.state.session.informationPictures
     return (
       <DefaultLayout>
-        <ScriptPlayer script={script} timestamp={this.state.timestamp} />
+        <ScriptPlayer
+          pictures={pictures && pictures}
+          script={script}
+          timestamp={this.state.timestamp}
+        />
         <AudioPlayer
           track={audio}
           onTimestampUpdate={timestamp => this.updateTimestamp(timestamp)}

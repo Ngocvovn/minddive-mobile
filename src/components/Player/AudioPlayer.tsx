@@ -115,7 +115,6 @@ export default class AudioPlayer extends Component<
   }
 
   public _onPlaybackStatusUpdate = status => {
-    console.log(status)
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
@@ -127,6 +126,7 @@ export default class AudioPlayer extends Component<
         volume: status.volume,
       })
       if (status.didJustFinish) {
+        console.log('audio done')
         this._onStopPressed()
       }
       if (status.isPlaying) {
@@ -153,7 +153,6 @@ export default class AudioPlayer extends Component<
 
   public async _updatePlaybackInstanceForIndex(playing): void {
     this._updateScreenForLoading(true)
-
     this._loadNewPlaybackInstance(playing)
   }
 
@@ -254,7 +253,6 @@ export default class AudioPlayer extends Component<
   }
 
   public render(): React.ReactNode {
-    console.log(this.state.isLoading)
     return (
       <View style={styles.container}>
         <View

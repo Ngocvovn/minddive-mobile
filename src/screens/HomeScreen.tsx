@@ -19,6 +19,15 @@ import sessions from '../sessions'
 
 const CURRENT_WEEK = 21
 
+function diff_weeks(dt2, dt1) 
+ {
+
+  var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+  diff /= (60 * 60 * 24 * 7);
+  return Math.abs(Math.round(diff));
+  
+ }
+
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
 }
@@ -55,6 +64,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
       <ImageBackgroundLayout>
         <View style={styles.container}>
           <ScrollView
+            alwaysBounceHorizontal={true}
             horizontal={true}
             decelerationRate={0}
             snapToInterval={width - 60}

@@ -20,6 +20,7 @@ import styles from './styles'
 interface ScriptPlayerProps {
   script: object[]
   timestamp: number
+  pictures: object
 }
 
 interface ScriptPlayerState {
@@ -56,22 +57,27 @@ export default class ScriptPlayer extends Component<
   public keyExtractor = (item: { timeStarts: number }, index: number) =>
     item.timeStarts.toString()
 
-  /** 
+  
   public componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.script.length < this.state.script.length) {
+    if (this.state.script.length > 0 && prevState.script.length < this.state.script.length) {
       setTimeout(() => {
-        this.scrollToIndex()
+        this.refs.flatList.scrollToEnd()
       }, 100)
     }
-  } 
-  **/
+  }
 
   public scrollToIndex = () => {
     const index = this.state.script.length - 1
     this.flatListRef.scrollToIndex({ animated: true, index })
   }
 
-  public renderItem = ({ item }) => <ScriptItem text={item.text} />
+  public renderItem = ({ item }) => {
+    if (item.type === 'TEXT') {
+      return <ScriptItem text={item.text} />
+    } else {
+      return <Image source={this.props.pictures[item.file]} />
+    }
+  }
 
   public render(): React.ReactNode {
     return (
@@ -79,9 +85,7 @@ export default class ScriptPlayer extends Component<
         <FlatList
           data={this.state.script}
           keyExtractor={this.keyExtractor}
-          ref={ref => {
-            this.flatListRef = ref
-          }}
+          ref="flatList"
           renderItem={this.renderItem}
         />
       </View>
