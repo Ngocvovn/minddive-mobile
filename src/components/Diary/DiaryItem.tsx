@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Text, View } from 'react-native'
 import { Reflection } from '../../services/ReflectionService'
+import GreenTitleBox from '../Boxes/GreenTitleBox'
 import H3 from '../Text/H3'
 import Paragraph from '../Text/Paragraph'
 import styles from './styles'
@@ -12,12 +13,7 @@ interface DiaryItemProps {
 const DiaryItem: React.SFC<DiaryItemProps> = props => {
   const { entry } = props
   return (
-    <View style={styles.diaryItem}>
-      <View style={styles.dateContainer}>
-        <Text style={styles.date}>
-          {entry.createdAt.toDate().toLocaleDateString()}
-        </Text>
-      </View>
+    <GreenTitleBox title={entry.createdAt.toDate().toLocaleDateString()}>
       {entry.image && (
         <Image
           resizeMode="cover"
@@ -29,7 +25,7 @@ const DiaryItem: React.SFC<DiaryItemProps> = props => {
         <H3 text={entry.feeling} />
         <Paragraph text={entry.text} />
       </View>
-    </View>
+    </GreenTitleBox>
   )
 }
 

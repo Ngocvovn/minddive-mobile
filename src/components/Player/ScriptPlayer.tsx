@@ -15,12 +15,19 @@ import {
   NavigationStackScreenOptions,
 } from 'react-navigation'
 import ScriptItem from './ScriptItem'
+import CursiveParagraph from '../Text/CursiveParagraph'
+import Bold from '../Text/Bold'
+import LogoText from '../Text/LogoText'
 import styles from './styles'
+
 
 interface ScriptPlayerProps {
   script: object[]
   timestamp: number
   pictures: object
+  preview: object
+  week: number
+  name: string
 }
 
 interface ScriptPlayerState {
@@ -32,19 +39,24 @@ export default class ScriptPlayer extends Component<
   ScriptPlayerProps,
   ScriptPlayerState
 > {
+
+
   public static getDerivedStateFromProps = (
     props: ScriptPlayerProps,
     state: ScriptPlayerState,
   ) => {
     const newScripts: object[] = []
-    props.script.map((item: object, i: number) => {
-      if (state.script.length === 0 || i > state.script.length - 1) {
-        if (props.timestamp >= item.timeStarts) {
-          newScripts.push(item)
+    if (props.script) {
+      props.script.map((item: object, i: number) => {
+        if (state.script.length === 0 || i > state.script.length - 1) {
+          if (props.timestamp >= item.timeStarts) {
+            newScripts.push(item)
+          }
         }
-      }
-    })
-    return { script: state.script.concat(newScripts) }
+      })
+      return { script: state.script.concat(newScripts) }
+    }
+   return null
   }
   constructor(props: ScriptPlayerProps) {
     super(props)
@@ -80,14 +92,23 @@ export default class ScriptPlayer extends Component<
   }
 
   public render(): React.ReactNode {
+    const preview = this.props.preview
     return (
       <View style={styles.scriptContainer}>
-        <FlatList
-          data={this.state.script}
-          keyExtractor={this.keyExtractor}
-          ref="flatList"
-          renderItem={this.renderItem}
-        />
+      {this.props.timestamp === 0 && this.props.preview ? 
+          <View style={{flex: 1 }}>
+           {this.props.pictures && <Image style={{ width: 125, resizeMode:'contain', alignSelf: 'center'}} source={this.props.pictures[this.props.preview.image]} />}
+            <CursiveParagraph text={this.props.preview.text} />
+            <Bold style={{ marginTop: 15}} text={`Kesto: ${this.props.preview.length}min`} />
+          </View>
+         : 
+          <FlatList
+            data={this.state.script}
+            keyExtractor={this.keyExtractor}
+            ref="flatList"
+            renderItem={this.renderItem}
+          />
+        }
       </View>
     )
   }

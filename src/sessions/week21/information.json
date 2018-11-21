@@ -1,4 +1,9 @@
-{ "audio": "http://users.metropolia.fi/~niinarie/pregmind/week21/audio.mp3",
+{ "preview": {
+    "image": "picture1",
+    "length": 1,
+    "text": "Tervetuloa viikon 21 sessioon, paina playta aloittaaksesi."
+  },
+  "audio": "http://users.metropolia.fi/~niinarie/pregmind/week21/audio.mp3",
   "script": [
     {
       "timeStarts": 2600,

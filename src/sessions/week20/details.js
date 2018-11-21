@@ -2,8 +2,10 @@
 import { Asset } from 'expo'
 
 export default {
-  name: "Läheiset ja vauva",
+  name: "Vauvan liikkeet",
   keywords: ["Vauvan liikkeet", "Yhteys vauvaan"],
   information: require('./information.json'),
-  week: 20
+  exercise: require("./exercise.json"),
+  week: 20,
+  reflection: require('./reflection.json')
 }

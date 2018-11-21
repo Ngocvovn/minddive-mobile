@@ -16,7 +16,7 @@ interface SessionInfoProps {
 const ListItem = ({ text }) => <Text>{text}</Text>
 
 const SessionInfo: React.SFC<SessionInfoProps> = props => {
-  const { session, navigate } = props
+  const { session, navigate, navigateReflection } = props
 
   return (
     <View
@@ -35,6 +35,11 @@ const SessionInfo: React.SFC<SessionInfoProps> = props => {
             title="Sessioon"
             onPress={() => navigate(session.week)}
             style={{ marginTop: 20 }}
+          />
+          <PrimaryButton
+          title="Reflektio"
+          onPress={() => navigateReflection(session.week)}
+          style={{ marginTop: 20 }}
           />
         </TextBoxWhite>
       </View>

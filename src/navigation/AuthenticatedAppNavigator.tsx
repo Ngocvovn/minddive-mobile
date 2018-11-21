@@ -13,11 +13,13 @@ import { AddUserInfoScreen } from '../screens/AddUserInfoScreen'
 
 import * as firebase from 'firebase'
 
-import { withAuthenticatedUser } from '../services/AuthService'
 import { AddReflectionScreen } from '../screens/AddReflectionScreen'
-import { SessionInformationScreen } from '../screens/SessionInformationScreen'
 import { DiaryScreen } from '../screens/DiaryScreen'
 import { HomeScreen } from '../screens/HomeScreen'
+import { SessionInformationScreen } from '../screens/SessionInformationScreen'
+import { ExerciseScreen } from '../screens/ExerciseScreen'
+import { ReflectionScreen } from '../screens/ReflectionScreen'
+import { withAuthenticatedUser } from '../services/AuthService'
 
 import variables from '../styles/variables'
 
@@ -131,6 +133,12 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     Information: {
       screen: SessionInformationScreen,
     },
+    Exercise: {
+      screen: ExerciseScreen,
+    },
+    Reflection: {
+      screen: ReflectionScreen,
+    },
   },
   {
     initialRouteName: 'AddUser',
@@ -145,4 +153,3 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
 )
-

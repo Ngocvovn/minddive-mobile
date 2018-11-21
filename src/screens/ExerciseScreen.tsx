@@ -1,6 +1,9 @@
 import { Facebook } from 'expo'
 import React, { Component } from 'react'
-import { Alert, StyleSheet } from 'react-native'
+import {
+  Alert,
+  StyleSheet,
+} from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
@@ -9,13 +12,13 @@ import AudioPlayer from '../components/Player/AudioPlayer'
 import ScriptPlayer from '../components/Player/ScriptPlayer'
 import DefaultLayout from '../layouts/DefaultLayout'
 
-interface SessionInformationScreenProps {
+interface ExerciseScreenProps {
   session: object
 }
 
-export class SessionInformationScreen extends Component {
+export class ExerciseScreen extends Component {
   public static navigationOptions: NavigationStackScreenOptions = {
-    title: 'Informaatio',
+    title: 'Harjoitus',
   }
 
   constructor(props) {
@@ -31,12 +34,12 @@ export class SessionInformationScreen extends Component {
     this.setState({ timestamp })
   }
 
-  public navigateToExercise = () => {
-    this.props.navigation.navigate('Exercise', { session: this.state.session })
+  public navigateToReflection = () => {
+    this.props.navigation.navigate('Reflection', { session: this.state.session })
   }
 
   public render(): React.ReactNode {
-    const { audio, script, preview } = this.state.session.information
+    const { audio, script, preview } = this.state.session.exercise
     const { pictures, week, name } = this.state.session
     return (
       <DefaultLayout>
@@ -50,7 +53,7 @@ export class SessionInformationScreen extends Component {
         />
         <AudioPlayer
           track={audio}
-          onAudioEnd={this.navigateToExercise}
+          onAudioEnd={this.navigateToReflection}
           onTimestampUpdate={timestamp => this.updateTimestamp(timestamp)}
         />
       </DefaultLayout>

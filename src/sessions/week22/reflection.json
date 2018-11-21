@@ -1,0 +1,22 @@
+{ 
+  "description": "Viikko 21 keskittyi vauvan liikkeisiin. Muistele harjoituksessa esiin nousseita kysymyksiä ja kirjoita tuntemukset alle.",
+  "questions": [
+    {
+      "question": "Miten tunsit liikkeet?",
+      "type": "FREETEXT"
+    },
+    {
+      "question": "Virkistävätkö jotkin värit, äänet tai liikkeet vauvaa? kerro mahdollisista tapahtumista",
+      "type": "FREETEXT"
+    },
+    {
+      "question": "Kirjoita viesti vauvallesi",
+      "type": "FREETEXT",
+      "placeholder": "Mitä haluaisit kertoa lapsellesi hänen vauvaiästään?"
+    },
+    {
+      "question": "Mitä tunteita vauvan liikkeet herättävät?",
+      "type": "MULTIPLE"
+    }
+  ]
+}

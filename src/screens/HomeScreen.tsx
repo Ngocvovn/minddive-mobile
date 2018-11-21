@@ -45,6 +45,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
     return (
       <SessionInfo key={sessions[s].default.week.toString()} 
       navigate={week => this.navigate(week)}
+      navigateReflection={week => this.navigateReflection(week)}
       session={sessions[s].default} />
     )
   })
@@ -56,7 +57,11 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
   }
 
   public navigate = week => {
-    this.props.navigation.navigate('Information', { session: sessions[week] })
+    this.props.navigation.navigate('Information', { session: sessions[week].default })
+  }
+
+  public navigateReflection = week => {
+    this.props.navigation.navigate('Reflection', { session: sessions[week].default })
   }
 
   public render(): React.ReactNode {

@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
+  bold: {
+    fontSize: variables.mediumFont,
+    color: variables.dark,
+    fontWeight: 'bold',
+  },
   textContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -18,6 +23,11 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: variables.smallFont,
     color: variables.dark
+  },
+  cursive: {
+    fontSize: variables.mediumFont,
+    color: variables.dark,
+    fontStyle: 'italic',
   },
   h3: {
     fontSize: variables.mediumFont,

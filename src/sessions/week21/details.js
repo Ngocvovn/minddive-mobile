@@ -5,8 +5,11 @@ export default {
   name: "Vauvan liikkeet",
   keywords: ["Vauvan liikkeet", "Yhteys vauvaan"],
   information: require('./information.json'),
+  exercise: require("./exercise.json"),
   week: 21,
-  informationPictures: {
-    picture1: require('./media/information.png')
-  }
+  pictures: {
+    picture1: require('./media/information.png'),
+    picture2: require('./media/exercise.png')
+  },
+  reflection: require('./reflection.json')
 }

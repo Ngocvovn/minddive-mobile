@@ -25,6 +25,7 @@ const RATE_SCALE = 3.0
 interface AudioPlayerProps {
   track: string
   onTimestampUpdate: ((timestamp: number) => number)
+  onAudioEnd: (() => void)
 }
 
 interface AudioPlayerState {
@@ -128,6 +129,7 @@ export default class AudioPlayer extends Component<
       if (status.didJustFinish) {
         console.log('audio done')
         this._onStopPressed()
+        setTimeout(() => this.props.onAudioEnd(), 500)
       }
       if (status.isPlaying) {
         setTimeout(() => {
