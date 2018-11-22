@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-import H3 from '../Text/H3'
+import { H3 } from '../Text/Header'
 import Paragraph from '../Text/Paragraph'
 import styles from './styles'
 

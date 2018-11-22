@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
 
   },
   week: {
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 })
 

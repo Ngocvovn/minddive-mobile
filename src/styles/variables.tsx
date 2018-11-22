@@ -7,8 +7,8 @@ const variables = {
   lightGrey: '#EBF0F5',
   smallFont: 16,
   mediumFont: 20,
+  headerFont: 28,
   bigFont: 36,
 }
-
 
 export default variables

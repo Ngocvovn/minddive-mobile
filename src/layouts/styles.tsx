@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
   imageBackground: {
     flex: 1,
     justifyContent: 'center',
-    padding: 20,
   },
   bottomRightFixed: {
     position: 'absolute',

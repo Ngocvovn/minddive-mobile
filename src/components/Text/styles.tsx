@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     fontSize: variables.mediumFont,
     color: variables.dark,
     fontWeight: 'bold',
+    fontFamily: 'nunito-semibold',
   },
   textContainer: {
     flex: 1,
@@ -22,18 +23,27 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: variables.smallFont,
-    color: variables.dark
+    color: variables.dark,
+    fontFamily: 'nunito-regular',
   },
   cursive: {
     fontSize: variables.mediumFont,
     color: variables.dark,
     fontStyle: 'italic',
   },
+  h2: {
+    fontSize: variables.headerFont,
+    fontWeight: 'bold',
+    color: variables.purple,
+    marginBottom: 5,
+    fontFamily: 'nunito-semibold',
+  },
   h3: {
     fontSize: variables.mediumFont,
     fontWeight: 'bold',
     color: variables.purple,
     marginBottom: 5,
+    fontFamily: 'nunito-semibold',
   }
 })
 

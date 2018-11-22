@@ -32,6 +32,8 @@ export class App extends React.Component<{}, AppState> {
     if (!this.state.fontLoaded) {
       await Font.loadAsync({
         'grandhotel-regular': require('../assets/fonts/GrandHotel-Regular.ttf'),
+        'nunito-regular': require('../assets/fonts/Nunito-Regular.ttf'),
+        'nunito-semibold': require('../assets/fonts/Nunito-SemiBold.ttf'),
       })
 
       this.setState({ fontLoaded: true })

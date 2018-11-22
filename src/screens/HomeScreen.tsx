@@ -78,6 +78,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
           </ScrollView>
           <PrimaryButton
             title="Päiväkirja"
+            style={{ marginBottom: 20 }}
             onPress={() => this.props.navigation.navigate('Diary')}
           />
         </View>
