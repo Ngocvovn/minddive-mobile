@@ -71,9 +71,7 @@ export class HomeScreen extends Component<HomeScreenProps, HomeScreenState> {
           <ScrollView
             alwaysBounceHorizontal={true}
             horizontal={true}
-            decelerationRate={0}
-            snapToInterval={width - 60}
-            snapToAlignment={'center'}
+            pagingEnabled={true}
             showsHorizontalScrollIndicator={false}
           >
             {this.sessionCards}

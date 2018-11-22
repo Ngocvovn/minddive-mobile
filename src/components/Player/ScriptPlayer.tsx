@@ -95,20 +95,32 @@ export default class ScriptPlayer extends Component<
     const preview = this.props.preview
     return (
       <View style={styles.scriptContainer}>
-      {this.props.timestamp === 0 && this.props.preview ? 
-          <View style={{flex: 1 }}>
-           {this.props.pictures && <Image style={{ width: 125, resizeMode:'contain', alignSelf: 'center'}} source={this.props.pictures[this.props.preview.image]} />}
+        {this.props.timestamp === 0 && this.props.preview ? (
+          <View style={{ flex: 1 }}>
+            {this.props.pictures && (
+              <Image
+                style={{
+                  width: 125,
+                  resizeMode: 'contain',
+                  alignSelf: 'center',
+                }}
+                source={this.props.pictures[this.props.preview.image]}
+              />
+            )}
             <CursiveParagraph text={this.props.preview.text} />
-            <Bold style={{ marginTop: 15}} text={`Kesto: ${this.props.preview.length}min`} />
+            <Bold
+              style={{ marginTop: 15 }}
+              text={`Kesto: ${this.props.preview.length}min`}
+            />
           </View>
-         : 
+        ) : (
           <FlatList
             data={this.state.script}
             keyExtractor={this.keyExtractor}
             ref="flatList"
             renderItem={this.renderItem}
           />
-        }
+        )}
       </View>
     )
   }

@@ -5,6 +5,7 @@ import styles from './styles'
 interface PrimaryButtonProps {
   disabled?: boolean
   title: string
+  style: object
   onPress: (event: GestureResponderEvent) => void
 }
 

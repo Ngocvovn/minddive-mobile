@@ -4,6 +4,7 @@ import styles from './styles'
 
 interface BoldProps {
   text: string
+  style: object
 }
 
 class Bold extends Component<BoldProps> {

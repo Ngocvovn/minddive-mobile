@@ -13,14 +13,14 @@ interface SessionInfoProps {
   session: object
 }
 
-const ListItem = ({ text }) => <Text>{text}</Text>
+const ListItem = ({ text }) => <Text>- {text}</Text>
 
 const SessionInfo: React.SFC<SessionInfoProps> = props => {
   const { session, navigate, navigateReflection } = props
 
   return (
     <View
-      style={{ flex: 1, width: width - 60, marginLeft: 15, marginRight: 15 }}
+      style={{ flex: 1, width: width - 70, marginLeft: 15, marginRight: 15 }}
     >
       <View style={styles.week}>
         <LogoText text={session.week.toString()} />
@@ -37,9 +37,9 @@ const SessionInfo: React.SFC<SessionInfoProps> = props => {
             style={{ marginTop: 20 }}
           />
           <PrimaryButton
-          title="Reflektio"
-          onPress={() => navigateReflection(session.week)}
-          style={{ marginTop: 20 }}
+            title="Reflektio"
+            onPress={() => navigateReflection(session.week)}
+            style={{ marginTop: 20 }}
           />
         </TextBoxWhite>
       </View>
