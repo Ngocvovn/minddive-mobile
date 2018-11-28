@@ -1,5 +1,5 @@
-import db from './Db'
 import * as firebase from 'firebase'
+import db from './Db'
 export enum Feeling {
   Happy = 'Happy',
   Sad = 'Sad',
@@ -23,7 +23,7 @@ export const userCollection = db.collection('users')
 
 export async function addReflection(reflection: Reflection) {
   try {
-    let res = await collection.add(reflection)
+    const res = await collection.add(reflection)
     return res
   } catch (error) {
     console.log(error)
@@ -47,7 +47,7 @@ export async function updateReflection(uid: string, newReflection: Reflection) {
 }
 
 export async function addInfo(userInfo: UserInfo) {
-  let user = firebase.auth().currentUser || { uid: '' }
+  const user = firebase.auth().currentUser || { uid: '' }
   try {
     await userCollection.doc(user.uid).set(userInfo)
   } catch (e) {

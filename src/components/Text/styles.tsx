@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     color: variables.purple,
     marginBottom: 5,
     fontFamily: 'nunito-semibold',
-  }
+  },
 })
 
 export default styles

@@ -14,12 +14,11 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
-import ScriptItem from './ScriptItem'
-import CursiveParagraph from '../Text/CursiveParagraph'
 import Bold from '../Text/Bold'
+import CursiveParagraph from '../Text/CursiveParagraph'
 import LogoText from '../Text/LogoText'
+import ScriptItem from './ScriptItem'
 import styles from './styles'
-
 
 interface ScriptPlayerProps {
   script: object[]
@@ -35,12 +34,27 @@ interface ScriptPlayerState {
   error: string
 }
 
+/**
+ * ScriptPlayer class takes in the script and handles the display of
+ * paragraphs/timed script items based on timestamp prop.
+ * Class also displays a start screen with information supplied
+ *
+ * @export
+ * @class ScriptPlayer
+ * @extends {Component<ScriptPlayerProps, ScriptPlayerState>}
+ *
+ * @param script Array of script items
+ * @param timespamp Integer timestamp that is used for deciding script items shown
+ * @param pictures List of available pictures in case script item is a picture
+ * @param preview Preview text for the script, shown before playback starts
+ * @param week Integer, number of the week for the preview
+ * @param name String, name of the week's session
+ */
+
 export default class ScriptPlayer extends Component<
   ScriptPlayerProps,
   ScriptPlayerState
 > {
-
-
   public static getDerivedStateFromProps = (
     props: ScriptPlayerProps,
     state: ScriptPlayerState,
@@ -56,7 +70,7 @@ export default class ScriptPlayer extends Component<
       })
       return { script: state.script.concat(newScripts) }
     }
-   return null
+    return null
   }
   constructor(props: ScriptPlayerProps) {
     super(props)
@@ -69,20 +83,19 @@ export default class ScriptPlayer extends Component<
   public keyExtractor = (item: { timeStarts: number }, index: number) =>
     item.timeStarts.toString()
 
-  
+  // Check if new items are added and scroll to the end
   public componentDidUpdate = (prevProps, prevState) => {
-    if (this.state.script.length > 0 && prevState.script.length < this.state.script.length) {
+    if (
+      this.state.script.length > 0 &&
+      prevState.script.length < this.state.script.length
+    ) {
       setTimeout(() => {
         this.refs.flatList.scrollToEnd()
       }, 100)
     }
   }
 
-  public scrollToIndex = () => {
-    const index = this.state.script.length - 1
-    this.flatListRef.scrollToIndex({ animated: true, index })
-  }
-
+  // conditional rendering of script item based on it's "type"
   public renderItem = ({ item }) => {
     if (item.type === 'TEXT') {
       return <ScriptItem text={item.text} />

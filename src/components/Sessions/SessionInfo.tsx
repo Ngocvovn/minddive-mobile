@@ -21,6 +21,7 @@ interface SessionInfoProps {
 
 const ListItem = ({ text }) => <Text>- {text}</Text>
 
+// List item for home page sessions
 const SessionInfo: React.SFC<SessionInfoProps> = props => {
   const { session, navigate, navigateReflection } = props
 

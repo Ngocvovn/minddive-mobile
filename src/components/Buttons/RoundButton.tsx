@@ -9,6 +9,7 @@ interface RoundButtonProps {
   onPress: (event: GestureResponderEvent) => void
 }
 
+// Round button meant to use with icon
 const RoundButton: React.SFC<RoundButtonProps> = props => {
   const { onPress, disabled, children } = props
   return (

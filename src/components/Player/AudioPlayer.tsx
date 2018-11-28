@@ -13,8 +13,6 @@ import {
 import Slider from 'react-native-slider'
 import { RoundButtonGreen } from '../Buttons/RoundButton'
 
-// https://github.com/GetStream/react-native-audio-player
-
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 const DISABLED_OPACITY = 0.5
 const FONT_SIZE = 14
@@ -38,6 +36,21 @@ interface AudioPlayerState {
   playbackInstanceDuration: number | null
   rate: number
 }
+
+/**
+ * AudioPlayer class that displays the control bar and handles the playback
+ * Able to notify the parent component of timestamp status and when the audio completes
+ * 
+ * Modified from https://github.com/GetStream/react-native-audio-player
+ *
+ * @export
+ * @class AudioPlayer
+ * @extends {Component<AudioPlayerProps, AudioPlayerState>}
+ * 
+ * @param track Url of the track, string
+ * @param onTimeStampUpdate function for notifying the parent of the status of playback
+ * @param onAudioEnd function for notifying the parent when the audio has completed
+ */
 
 export default class AudioPlayer extends Component<
   AudioPlayerProps,

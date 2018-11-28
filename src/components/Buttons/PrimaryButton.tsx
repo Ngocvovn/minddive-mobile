@@ -9,6 +9,7 @@ interface PrimaryButtonProps {
   onPress: (event: GestureResponderEvent) => void
 }
 
+// Primary button with rounded edge and fixed padding
 const PrimaryButton: React.SFC<PrimaryButtonProps> = props => {
   const { title, onPress, disabled, style } = props
   return (

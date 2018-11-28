@@ -9,6 +9,7 @@ interface GreenTitleBoxProps {
   children?: React.ReactNode
 }
 
+// Styled container with green title area
 const GreenTitleBox: React.SFC<GreenTitleBoxProps> = props => {
   const { title, children } = props
   return (

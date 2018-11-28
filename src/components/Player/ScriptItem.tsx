@@ -9,7 +9,7 @@ import styles from './styles'
 interface ScriptItemProps {
   text: string
 }
-
+// Simple component for fade-in script text
 const ScriptItem: React.SFC<ScriptItemProps> = props => {
   const { text } = props
   return (

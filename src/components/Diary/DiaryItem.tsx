@@ -10,6 +10,7 @@ interface DiaryItemProps {
   entry: Reflection
 }
 
+// Diary item, takes in Reflection class object
 const DiaryItem: React.SFC<DiaryItemProps> = props => {
   const { entry } = props
   return (

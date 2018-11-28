@@ -6,6 +6,7 @@ interface TextBoxWhiteProps {
   children?: React.ReactNode
 }
 
+// Simple white container with padding
 const TextBoxWhite: React.StatelessComponent<TextBoxWhiteProps> = ({
   children,
 }) => <View style={styles.textboxwhite}>{children}</View>
