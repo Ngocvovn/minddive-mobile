@@ -23,7 +23,7 @@ import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
 
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars'
 import { CheckBox } from 'react-native-elements'
-import { addInfo } from '../services/ReflectionService'
+import UserStore from '../stores/UserStore'
 import LogoText from '../components/Text/LogoText'
 interface AddUserInfoScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -36,6 +36,7 @@ interface AddUserInfoScreenState {
   calendar: boolean
 }
 
+@observer
 export class AddUserInfoScreen extends Component<
   AddUserInfoScreenProps,
   AddUserInfoScreenState
@@ -60,7 +61,7 @@ export class AddUserInfoScreen extends Component<
       calendar: false,
     }
 
-    this.add1UserInfo = this.add1UserInfo.bind(this)
+    this.addUserInfo = this.addUserInfo.bind(this)
   }
 
   public render(): React.ReactNode {
@@ -109,14 +110,14 @@ export class AddUserInfoScreen extends Component<
           }}
           onPress={() => this.setState({ isMother: !this.state.isMother })}
         />
-        <PrimaryButton onPress={this.add1UserInfo} title="Tallenna" />
+        <PrimaryButton onPress={this.addUserInfo} title="Tallenna" />
       </ImageBackgroundLayout>
     )
   }
 
-  async add1UserInfo() {
+  async addUserInfo() {
     try {
-      await addInfo({
+      await UserStore.addUserInfo({
         dueDate: firebase.firestore.Timestamp.fromMillis(this.state.dueDate),
         isMother: this.state.isMother,
       })

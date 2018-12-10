@@ -21,8 +21,10 @@ import { HomeScreen } from '../screens/HomeScreen'
 import { ReflectionScreen } from '../screens/ReflectionScreen'
 import { SessionInformationScreen } from '../screens/SessionInformationScreen'
 import { withAuthenticatedUser } from '../services/AuthService'
+import { SessionScreen } from '../screens/SessionScreen'
 
 import variables from '../styles/variables'
+import UserStore from '../stores/UserStore'
 
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -51,9 +53,12 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     Reflection: {
       screen: ReflectionScreen,
     },
+    Session: {
+      screen: SessionScreen,
+    },
   },
   {
-    initialRouteName: 'AddUser',
+    initialRouteName: UserStore.userInfo.dueDate ? 'AddUser' : 'Session',
     navigationOptions: {
       headerStyle: {
         backgroundColor: variables.purpleGrey,

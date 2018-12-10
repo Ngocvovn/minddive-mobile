@@ -1,6 +1,5 @@
 import React from 'react'
 import { Image, Text, View } from 'react-native'
-import PrimaryButton from '../components/Buttons/PrimaryButton'
 
 import styles from './styles'
 

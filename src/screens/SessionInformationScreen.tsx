@@ -8,12 +8,23 @@ import {
 import AudioPlayer from '../components/Player/AudioPlayer'
 import ScriptPlayer from '../components/Player/ScriptPlayer'
 import DefaultLayout from '../layouts/DefaultLayout'
+import sessions from '../sessions'
 
 interface SessionInformationScreenProps {
+  navigation: NavigationScreenProp<{}, {}>
   session: object
 }
 
-export class SessionInformationScreen extends Component {
+interface SessionInformationScreenState {
+  error?: string
+  timestamp: number
+  session: number
+}
+
+export class SessionInformationScreen extends Component<
+  SessionInformationScreenProps,
+  SessionInformationScreenState
+> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Informaatio',
   }
@@ -23,7 +34,7 @@ export class SessionInformationScreen extends Component {
     this.state = {
       error: '',
       timestamp: 0,
-      session: props.navigation.getParam('session', {}),
+      session: props.navigation.getParam('session', 21),
     }
   }
 
@@ -36,8 +47,12 @@ export class SessionInformationScreen extends Component {
   }
 
   public render(): React.ReactNode {
-    const { audio, script, preview } = this.state.session.information
-    const { pictures, week, name } = this.state.session
+    console.log(this.state)
+    const { audio, script, preview } = sessions[
+      this.state.session
+    ].default.information
+    const { pictures, week, name } = sessions[this.state.session].default
+
     return (
       <DefaultLayout>
         <ScriptPlayer
@@ -51,7 +66,9 @@ export class SessionInformationScreen extends Component {
         <AudioPlayer
           track={audio}
           onAudioEnd={this.navigateToExercise}
-          onTimestampUpdate={timestamp => this.updateTimestamp(timestamp)}
+          onTimestampUpdate={timestamp =>
+            this.setState({ timestamp: timestamp })
+          }
         />
       </DefaultLayout>
     )

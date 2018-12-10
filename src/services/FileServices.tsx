@@ -4,7 +4,7 @@ import { Facebook, ImagePicker, Permissions, FileSystem } from 'expo'
 
 const storageRef = firebase.storage().ref()
 
-//upload image handler
+// upload image handler
 // first assign unique id of image
 // upload to firebase object storage service
 // return image url from object storage
@@ -34,6 +34,7 @@ export async function getDownloadUrl(path: string) {
   }
 }
 
+// find image extension
 function findImageType(image: ImagePicker.ImageInfo): string {
   let type: string = ''
   if (image.uri.indexOf('.jpg') > -1) {
@@ -46,6 +47,7 @@ function findImageType(image: ImagePicker.ImageInfo): string {
   return type
 }
 
+// Ask camera permission and pick image
 export async function pickImage(): Promise<string> {
   const { status: existingStatus } = await Permissions.askAsync(
     Permissions.CAMERA_ROLL,
