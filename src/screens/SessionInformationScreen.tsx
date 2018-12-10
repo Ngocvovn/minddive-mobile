@@ -12,7 +12,7 @@ import sessions from '../sessions'
 
 interface SessionInformationScreenProps {
   navigation: NavigationScreenProp<{}, {}>
-  session: object
+  session: number
 }
 
 interface SessionInformationScreenState {
@@ -36,6 +36,8 @@ export class SessionInformationScreen extends Component<
       timestamp: 0,
       session: props.navigation.getParam('session', 21),
     }
+    this.navigateToExercise = this.navigateToExercise.bind(this)
+    this.updateTimestamp = this.updateTimestamp.bind(this)
   }
 
   public updateTimestamp = timestamp => {

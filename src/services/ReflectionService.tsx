@@ -10,6 +10,8 @@ export interface Reflection {
   feeling?: string
   updatedAt?: firebase.firestore.Timestamp
   video?: string
+  answers?: Answer[]
+  session: number
 }
 
 export interface UserInfo {
@@ -17,8 +19,14 @@ export interface UserInfo {
   isMother?: boolean
 }
 
+export interface Answer {
+  answer: string
+  questionNumber: number
+}
+
 export const collection = db.collection('reflections')
 export const userCollection = db.collection('users')
+export const answer = db.collection('answers')
 
 export async function addReflection(reflection: Reflection) {
   try {

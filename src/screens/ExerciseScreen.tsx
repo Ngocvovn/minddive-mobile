@@ -1,9 +1,6 @@
 import { Facebook } from 'expo'
 import React, { Component } from 'react'
-import {
-  Alert,
-  StyleSheet,
-} from 'react-native'
+import { Alert, StyleSheet } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
@@ -11,12 +8,23 @@ import {
 import AudioPlayer from '../components/Player/AudioPlayer'
 import ScriptPlayer from '../components/Player/ScriptPlayer'
 import DefaultLayout from '../layouts/DefaultLayout'
+import sessions from '../sessions'
 
 interface ExerciseScreenProps {
-  session: object
+  navigation: NavigationScreenProp<{}, {}>
+  session: number
 }
 
-export class ExerciseScreen extends Component {
+interface ExerciseScreenState {
+  error?: string
+  timestamp: number
+  session: number
+}
+
+export class ExerciseScreen extends Component<
+  ExerciseScreenProps,
+  ExerciseScreenState
+> {
   public static navigationOptions: NavigationStackScreenOptions = {
     title: 'Harjoitus',
   }
@@ -35,12 +43,16 @@ export class ExerciseScreen extends Component {
   }
 
   public navigateToReflection = () => {
-    this.props.navigation.navigate('Reflection', { session: this.state.session })
+    this.props.navigation.navigate('Reflection', {
+      session: this.state.session,
+    })
   }
 
   public render(): React.ReactNode {
-    const { audio, script, preview } = this.state.session.exercise
-    const { pictures, week, name } = this.state.session
+    const { audio, script, preview } = sessions[
+      this.state.session
+    ].default.exercise
+    const { pictures, week, name } = sessions[this.state.session].default
     return (
       <DefaultLayout>
         <ScriptPlayer

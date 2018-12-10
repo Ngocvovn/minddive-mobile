@@ -3,6 +3,7 @@ import { Text } from 'react-native'
 import styles from './styles'
 
 interface CursiveParagraphProps {
+  style: any
   text: string
 }
 
