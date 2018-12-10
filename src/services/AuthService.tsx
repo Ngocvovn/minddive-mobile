@@ -38,6 +38,8 @@ export class AuthStateProvider extends React.Component<{}, AuthStateState> {
   }
 }
 
+// React high-order component which will return React component
+// If firebase user is existed it will return Home Screen otherwise it will redirect to log in screen
 export function withAuthenticatedUser<P>(
   Component: React.ComponentType<P & { user: firebase.User }>,
 ): React.ComponentType<P> {

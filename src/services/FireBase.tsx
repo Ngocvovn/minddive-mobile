@@ -1,6 +1,7 @@
 import * as firebase from 'firebase'
 require('firebase/firestore')
 
+//initialize firebase and firstore which is database service of firebase
 export function init() {
   if (firebase.apps.length === 0) {
     firebase.initializeApp({

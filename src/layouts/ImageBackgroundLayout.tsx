@@ -5,9 +5,16 @@ import styles from './styles'
 
 const background = require('./imageBackground.png')
 
-const ImageBackgroundLayout: React.SFC<{}> = props => (
+interface ImageBackgroundLayoutProps {
+  children?: React.ReactNode
+}
+
+// Same than DefaultLayout but with image background
+const ImageBackgroundLayout: React.StatelessComponent<
+  ImageBackgroundLayoutProps
+> = ({ children }) => (
   <ImageBackground source={background} style={styles.backgroundStyle}>
-    <View style={styles.imageBackground}>{props.children}</View>
+    <View style={styles.imageBackground}>{children}</View>
   </ImageBackground>
 )
 

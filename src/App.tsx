@@ -1,16 +1,15 @@
+import { Font } from 'expo'
+import _ from 'lodash'
 import * as React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
-import { Font } from 'expo'
-
+import { YellowBox } from 'react-native'
+import AppLoading from './components/Loading/AppLoading'
 import { RootNavigator } from './navigation/RootNavigator'
 import { AuthStateProvider } from './services/AuthService'
 
-import AppLoading from './components/Loading/AppLoading'
-
-import { YellowBox } from 'react-native'
-import _ from 'lodash'
 YellowBox.ignoreWarnings(['Setting a timer'])
 const _console = _.clone(console)
+
 console.warn = (message: any) => {
   if (message.indexOf('Setting a timer') <= -1) {
     _console.warn(message)
@@ -32,6 +31,8 @@ export class App extends React.Component<{}, AppState> {
     if (!this.state.fontLoaded) {
       await Font.loadAsync({
         'grandhotel-regular': require('../assets/fonts/GrandHotel-Regular.ttf'),
+        'nunito-regular': require('../assets/fonts/Nunito-Regular.ttf'),
+        'nunito-semibold': require('../assets/fonts/Nunito-SemiBold.ttf'),
       })
 
       this.setState({ fontLoaded: true })

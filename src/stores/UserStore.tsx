@@ -13,6 +13,7 @@ class UserInfoStore {
   async addUserInfo(userInfo: UserInfo) {
     try {
       let result = await addInfo(userInfo)
+      console.log(result)
       runInAction(() => {
         this.userInfo = userInfo
         this.state = 'done'

@@ -1,46 +1,46 @@
-import React, { Component } from 'react'
-import { View, Text, Image } from 'react-native'
-import styles from './styles'
+import React from 'react'
+import { Image, Text, View } from 'react-native'
 import { Reflection } from '../../services/ReflectionService'
 import { Video } from 'expo'
+import GreenTitleBox from '../Boxes/GreenTitleBox'
+import { H3 } from '../Text/Header'
+import Paragraph from '../Text/Paragraph'
+import styles from './styles'
 
 interface DiaryItemProps {
   entry: Reflection
 }
 
-class DiaryItem extends Component<DiaryItemProps> {
-  public render(): React.ReactNode {
-    const { entry } = this.props
-    return (
-      <View style={styles.diaryItem}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.date}>
-            {entry.createdAt.toDate().toLocaleDateString()}
-          </Text>
-        </View>
-        {entry.image && (
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: entry.image }}
-          />
-        )}
-        {entry.video && (
-          <Video
-            source={{ uri: entry.video }}
-            rate={1.0}
-            volume={1.0}
-            isMuted={false}
-            resizeMode="cover"
-            shouldPlay
-            isLooping
-            style={{ width: 300, height: 300 }}
-          />
-        )}
-        <Text>{entry.text}</Text>
-        <Text>{entry.feeling}</Text>
+// Diary item, takes in Reflection class object
+const DiaryItem: React.SFC<DiaryItemProps> = props => {
+  const { entry } = props
+  return (
+    <GreenTitleBox title={entry.createdAt.toDate().toLocaleDateString()}>
+      {entry.image && (
+        <Image
+          resizeMode="cover"
+          style={styles.image}
+          source={{ uri: entry.image }}
+        />
+      )}
+      <View style={styles.text}>
+        <H3 text={entry.feeling} />
+        <Paragraph text={entry.text} />
       </View>
-    )
-  }
+      {entry.video && (
+        <Video
+          source={{ uri: entry.video }}
+          rate={1.0}
+          volume={1.0}
+          isMuted={false}
+          resizeMode="cover"
+          shouldPlay
+          isLooping
+          style={{ width: 300, height: 300 }}
+        />
+      )}
+    </GreenTitleBox>
+  )
 }
 
 export default DiaryItem

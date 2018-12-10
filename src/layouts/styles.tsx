@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    height: '100%',
     backgroundColor: variables.lightGrey,
   },
   backgroundStyle: {
@@ -19,13 +18,17 @@ const styles = StyleSheet.create({
   imageBackground: {
     flex: 1,
     justifyContent: 'center',
-    padding: 20,
   },
   bottomRightFixed: {
     position: 'absolute',
     right: 20,
     bottom: 20
   },
+  textboxwhite: {
+    borderRadius: 5,
+    backgroundColor: 'white',
+    padding: 15,
+  }
 })
 
 export default styles

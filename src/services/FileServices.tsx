@@ -4,6 +4,10 @@ import { Facebook, ImagePicker, Permissions, FileSystem } from 'expo'
 
 const storageRef = firebase.storage().ref()
 
+//upload image handler
+// first assign unique id of image
+// upload to firebase object storage service
+// return image url from object storage
 export async function uploadImage(
   image: ImagePicker.ImageInfo,
 ): Promise<string> {

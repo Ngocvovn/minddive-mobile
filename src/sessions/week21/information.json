@@ -1,0 +1,39 @@
+{ "preview": {
+    "image": "picture1",
+    "length": 1,
+    "text": "Tervetuloa viikon 21 sessioon, paina playta aloittaaksesi."
+  },
+  "audio": "http://users.metropolia.fi/~niinarie/pregmind/week21/audio.mp3",
+  "script": [
+    {
+      "timeStarts": 2600,
+      "type": "TEXT",
+      "text": "Tervetuloa viikon 21 sessioon."
+    },
+    {
+      "timeStarts": 7000,
+      "type": "TEXT",
+      "text": "Useimmat odottavista äideistä voivat tuntea vauvan liikkeet näillä raskausviikoilla."
+    },
+    {
+      "timeStarts": 13000,
+      "type": "TEXT",
+      "text": "Vauvan liikkeiden tunteminen on ihmeellistä ja ikimuistoista, ja on odottavalle äidille myös psykologisesti erittäin tärkeää, sillä vauvan liikkeiden tunnistamisen myötä kautta raskaus ja vauva alkavat tuntua todellisemmilta."
+    },
+    {
+      "timeStarts": 30000,
+      "type": "TEXT",
+      "text": "Tunnistamalla vauvan liikkeitä sinun voi olla helpompi pitää vauvaa mielessä, tiedostaen ja tutustuen vauvaan."
+    },
+    {
+      "timeStarts": 38000,
+      "type": "TEXT",
+      "text": "Usein liikkeiden tunnistaminen vahvistaa yhteyttä vauvaan."
+    },
+    {
+      "timeStarts": 43000,
+      "type": "TEXT",
+      "text": "Okei. Tehdään nyt tämänkertainen harjoitus."
+    }
+  ]
+}

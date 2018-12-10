@@ -1,35 +1,23 @@
 import { Permissions, Camera } from 'expo'
+import { Ionicons } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import { SignUpScreen } from './SignUpScreen'
-import {
-  addReflection,
-  Reflection,
-  Feeling,
-  collection,
-} from '../services/ReflectionService'
-import { pickImage } from '../services/FileServices'
-import DefaultLayout from '../layouts/DefaultLayout'
-import PrimaryButton from '../components/Buttons/PrimaryButton'
-import { Ionicons } from '@expo/vector-icons'
-import {
-  Alert,
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-  Picker,
-  TouchableOpacity,
-  Modal,
-} from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View, Picker } from 'react-native'
 import { observer } from 'mobx-react'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
+import PrimaryButton from '../components/Buttons/PrimaryButton'
+import DefaultLayout from '../layouts/DefaultLayout'
+import { pickImage } from '../services/FileServices'
+import {
+  addReflection,
+  collection,
+  Feeling,
+  Reflection,
+} from '../services/ReflectionService'
+import { SignUpScreen } from './SignUpScreen'
 import DiaryStore from '../stores/DiaryStore'
 
 import db from '../services/Db'
@@ -113,21 +101,20 @@ export class AddReflectionScreen extends Component<
           color="black"
           onPress={this.addImage}
         />
-
         <TextInput
           autoCapitalize="sentences"
           autoCorrect={false}
+          multiline={true}
           style={styles.textInput}
           onChangeText={text => this.setState({ text })}
-          placeholder="Merkinnän nimi"
+          placeholder="Kirjoita merkintä"
         />
         <TextInput
           style={styles.textInput}
           autoCapitalize="sentences"
           autoCorrect={false}
-          multiline={true}
           onChangeText={feeling => this.setState({ feeling })}
-          placeholder="Kerro fiilikset"
+          placeholder="Fiilis"
         />
         <View style={styles.alignHorizontally}>
           <Picker
@@ -186,8 +173,8 @@ export class AddReflectionScreen extends Component<
   }
 
   private async addNewReflection() {
-    let user = firebase.auth().currentUser || { uid: '' }
-    let reflection: Reflection = {
+    const user = firebase.auth().currentUser || { uid: '' }
+    const reflection: Reflection = {
       text: this.state.text,
       feeling: this.state.feeling,
       createdAt: firebase.firestore.Timestamp.now(),

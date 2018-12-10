@@ -17,7 +17,6 @@ import { Ionicons } from '@expo/vector-icons'
 import {
   Alert,
   Button,
-  ScrollView,
   FlatList,
   StyleSheet,
   Text,
@@ -39,7 +38,7 @@ interface DiaryScreenProps {
 
 interface DiaryScreenState {
   error?: string
-  reflections: Array<Reflection>
+  reflections: Reflection[]
 }
 
 @observer
@@ -60,9 +59,9 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
     await DiaryStore.getAll()
   }
 
-  keyExtractor = (item, index) => 'diaryItem' + index
+  public keyExtractor = (item, index) => 'diaryItem' + index
 
-  renderItem = ({ item }) => <DiaryItem entry={item} />
+  public renderItem = ({ item }) => <DiaryItem entry={item} />
 
   public render(): React.ReactNode {
     return (
@@ -75,7 +74,8 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
         <BottomRightFixed>
           <RoundButton
             onPress={() => this.props.navigation.navigate('AddReflection')}
-          />
+          ><Ionicons name="md-add" size={32} color="white" />
+          </RoundButton>
         </BottomRightFixed>
       </DefaultLayout>
     )

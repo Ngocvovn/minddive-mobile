@@ -120,6 +120,7 @@ export class AddUserInfoScreen extends Component<
         dueDate: firebase.firestore.Timestamp.fromMillis(this.state.dueDate),
         isMother: this.state.isMother,
       })
+      this.props.navigation.navigate('Home')
     } catch (e) {
       console.log(e)
     }

@@ -10,10 +10,40 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
   },
+  bold: {
+    fontSize: variables.mediumFont,
+    color: variables.dark,
+    fontWeight: 'bold',
+    fontFamily: 'nunito-semibold',
+  },
   textContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  paragraph: {
+    fontSize: variables.smallFont,
+    color: variables.dark,
+    fontFamily: 'nunito-regular',
+  },
+  cursive: {
+    fontSize: variables.mediumFont,
+    color: variables.dark,
+    fontStyle: 'italic',
+  },
+  h2: {
+    fontSize: variables.headerFont,
+    fontWeight: 'bold',
+    color: variables.purple,
+    marginBottom: 5,
+    fontFamily: 'nunito-semibold',
+  },
+  h3: {
+    fontSize: variables.mediumFont,
+    fontWeight: 'bold',
+    color: variables.purple,
+    marginBottom: 5,
+    fontFamily: 'nunito-semibold',
   },
 })
 
