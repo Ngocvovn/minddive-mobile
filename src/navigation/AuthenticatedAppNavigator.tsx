@@ -10,6 +10,7 @@ import {
   NavigationStackScreenOptions,
 } from 'react-navigation'
 import { AddUserInfoScreen } from '../screens/AddUserInfoScreen'
+import { SessionScreen } from '../screens/SessionScreen'
 
 import * as firebase from 'firebase'
 
@@ -118,7 +119,7 @@ class DetailsScreen extends React.Component<{
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
-      screen: AddUserInfoScreen,
+      screen: AddReflectionScreen,
     },
     Details: {
       screen: withAuthenticatedUser(DetailsScreen),

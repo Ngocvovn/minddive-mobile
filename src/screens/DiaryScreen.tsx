@@ -5,7 +5,6 @@ import { SignUpScreen } from './SignUpScreen'
 import {
   addReflection,
   Reflection,
-  Feeling,
   collection,
 } from '../services/ReflectionService'
 import { pickImage } from '../services/FileServices'

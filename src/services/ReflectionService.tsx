@@ -1,16 +1,14 @@
 import db from './Db'
 import * as firebase from 'firebase'
-export enum Feeling {
-  Happy = 'Happy',
-  Sad = 'Sad',
-}
+
 export interface Reflection {
   createdBy: string
   createdAt: firebase.firestore.Timestamp
   text?: string
   image?: string
-  feeling?: Feeling
+  feeling?: string
   updatedAt?: firebase.firestore.Timestamp
+  video?: string
 }
 
 export interface UserInfo {

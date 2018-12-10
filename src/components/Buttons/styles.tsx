@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 import variables from '../../styles/variables'
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   secondaryButtonStyle: {
     padding: 10,
     backgroundColor: variables.turquoise,
-    borderRadius: 5
+    borderRadius: 5,
   },
   roundButtonStyle: {
     width: 60,

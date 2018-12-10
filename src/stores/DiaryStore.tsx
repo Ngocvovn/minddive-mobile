@@ -3,7 +3,6 @@ import * as firebase from 'firebase'
 import {
   addReflection,
   Reflection,
-  Feeling,
   collection,
 } from '../services/ReflectionService'
 class DiaryStore {

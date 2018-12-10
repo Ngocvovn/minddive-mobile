@@ -1,6 +1,6 @@
 import * as firebase from 'firebase'
 import uuid from 'uuid'
-import { Facebook, ImagePicker, Permissions } from 'expo'
+import { Facebook, ImagePicker, Permissions, FileSystem } from 'expo'
 
 const storageRef = firebase.storage().ref()
 
