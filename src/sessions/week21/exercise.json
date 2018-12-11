@@ -1,39 +1,119 @@
 { "preview": {
     "image": "picture2",
-    "length": 15,
+    "length": 4.5,
     "text": "Etsi aluksi rauhallinen paikka jossa voit istua tai maata hetken aivan rauhassa ja paina sitten ruutua jatkaaksesi."
   },
-  "audio": "http://users.metropolia.fi/~niinarie/pregmind/week21/audio.mp3",
+  "audio": "https://iinar.net/pregmind/week21/sessio_harjoitus.mp3",
   "script": [
     {
-      "timeStarts": 2600,
+      "timeStarts": 1800,
       "type": "TEXT",
-      "text": "Tervetuloa viikon 21 sessioon."
+      "text": "Varmista, että asentosi on mukava."
     },
     {
-      "timeStarts": 7000,
+      "timeStarts": 8500,
       "type": "TEXT",
-      "text": "Useimmat odottavista äideistä voivat tuntea vauvan liikkeet näillä raskausviikoilla."
+      "text": "Hengitä aluksi muutaman kerran syvään."
     },
     {
-      "timeStarts": 13000,
+      "timeStarts": 21000,
       "type": "TEXT",
-      "text": "Vauvan liikkeiden tunteminen on ihmeellistä ja ikimuistoista, ja on odottavalle äidille myös psykologisesti erittäin tärkeää, sillä vauvan liikkeiden tunnistamisen myötä kautta raskaus ja vauva alkavat tuntua todellisemmilta."
+      "text": "Voit sulkea silmäsi."
     },
     {
-      "timeStarts": 30000,
+      "timeStarts": 23600,
       "type": "TEXT",
-      "text": "Tunnistamalla vauvan liikkeitä sinun voi olla helpompi pitää vauvaa mielessä, tiedostaen ja tutustuen vauvaan."
+      "text": "Hengitä vielä hetki rauhassa."
     },
     {
-      "timeStarts": 38000,
+      "timeStarts": 40000,
       "type": "TEXT",
-      "text": "Usein liikkeiden tunnistaminen vahvistaa yhteyttä vauvaan."
+      "text": "Anna itsellesi hetki aikaa tulla tietoiseksi vauvan liikehdinnästä."
     },
     {
-      "timeStarts": 43000,
+      "timeStarts": 45200,
       "type": "TEXT",
-      "text": "Okei. Tehdään nyt tämänkertainen harjoitus."
+      "text": "Kuulostele nyt miltä vauva tuntuu."
+    },
+    {
+      "timeStarts": 63200,
+      "type": "TEXT",
+      "text": "Seuraavaksi kuulet muutamia kysymyksiä joita voit kevyesti ajatella samalla kun kuulostelet vauvaa."
+    },
+    {
+      "timeStarts": 70200,
+      "type": "TEXT",
+      "text": "Onko vauva hereille vai nukkuuko hän?"
+    },
+    {
+      "timeStarts": 82000,
+      "type": "TEXT",
+      "text": "Jos vauva on nyt hereillä ja liikkuu niin miltä vauvan liikkeet tuntuvat?"
+    },
+    {
+      "timeStarts": 88200,
+      "type": "TEXT",
+      "text": "Jos vauva ei juuri nyt ole hereillä, voit muistella tilannetta, jossa olet tuntenut vauvan liikehdintää."
+    },
+    {
+      "timeStarts": 101000,
+      "type": "TEXT",
+      "text": "Vauvan liikkeet voivat herättää hyvin monenlaisia tuntemuksia, iloa ja onnea mutta mahdollisesti myös vaikeita tai ristiriitaisia oloja."
+    },
+    {
+      "timeStarts": 120000,
+      "type": "TEXT",
+      "text": "Minkälaisia tunteita liikkeet herättävät sinussa nyt?"
+    },
+    {
+      "timeStarts": 144000,
+      "type": "TEXT",
+      "text": "Oletko huomannut vauvalla jonkun tietyn vuorokausirytmin?"
+    },
+    {
+      "timeStarts": 148000,
+      "type": "TEXT",
+      "text": "Onko hän virkeämpi tiettyinä aikoina tai nukkuuko hän aina samaan aikaan?"
+    },
+    {
+      "timeStarts": 160000,
+      "type": "TEXT",
+      "text": "Reagoiko hän johonkin tiettyyn ääneen tai kosketukseen?"
+    },
+    {
+      "timeStarts": 177000,
+      "type": "TEXT",
+      "text": "Tuntuuko hän liikkuvan enemmän vai vähemmän, kun itse liikut tai olet paikallasi?"
+    },
+    {
+      "timeStarts": 193400,
+      "type": "TEXT",
+      "text": "Eläydy nyt hetkeksi vauvasi tilalle."
+    },
+    {
+      "timeStarts": 200000,
+      "type": "TEXT",
+      "text": "Kuvittele että kellut turvallisesti lämpimässä lapsivedessä."
+    },
+    {
+      "timeStarts": 220000,
+      "type": "TEXT",
+      "text": "Miltäköhän kohdussa nyt tuntuu olla?"
+    },
+    {
+      "timeStarts": 226000,
+      "type": "TEXT",
+      "text": "Jos olisit vauva ja haluaisit sanoa jotain odottavalle itsellesi, niin mitähän se voisi olla?"
+    },
+    {
+      "timeStarts": 250000,
+      "type": "TEXT",
+      "text": "Voit siirtyä session reflektiovaiheeseen painamalla ruutua, mutta ole vielä hetki rauhallisesti yhteydessä vauvasi kanssa."
+    },
+    {
+      "timeStarts": 259000,
+      "type": "TEXT",
+      "text": "Voit siirtyä eteenpäin sitten kun sinusta tuntuu siltä."
     }
   ]
 }

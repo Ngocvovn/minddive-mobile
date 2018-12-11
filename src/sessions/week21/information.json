@@ -3,37 +3,37 @@
     "length": 1,
     "text": "Tervetuloa viikon 21 sessioon, paina playta aloittaaksesi."
   },
-  "audio": "http://users.metropolia.fi/~niinarie/pregmind/week21/audio.mp3",
+  "audio": "https://iinar.net/pregmind/week21/sessio_info.mp3",
   "script": [
     {
-      "timeStarts": 2600,
+      "timeStarts": 1500,
       "type": "TEXT",
-      "text": "Tervetuloa viikon 21 sessioon."
+      "text": "Hei. Tervetuloa Vauvan liikkeet -sessioon."
     },
     {
-      "timeStarts": 7000,
+      "timeStarts": 5500,
       "type": "TEXT",
-      "text": "Useimmat odottavista äideistä voivat tuntea vauvan liikkeet näillä raskausviikoilla."
+      "text": "Useimmat odottavista äideistä voivat tuntea vauvan liikkeet näillä raskausviikoilla, mutta se voi tapahtua jo aikaisemmin tai myöhemmin."
     },
     {
-      "timeStarts": 13000,
+      "timeStarts": 14500,
       "type": "TEXT",
-      "text": "Vauvan liikkeiden tunteminen on ihmeellistä ja ikimuistoista, ja on odottavalle äidille myös psykologisesti erittäin tärkeää, sillä vauvan liikkeiden tunnistamisen myötä kautta raskaus ja vauva alkavat tuntua todellisemmilta."
+      "text": "Vauvan liikkeiden tunteminen on ihmeellistä ja ikimuistoista, ja odottavalle äidille myös psykologisesti erittäin tärkeää, sillä vauvan liikkeiden tunnistamisen myötä raskaus ja vauva alkavat tuntua todellisemmilta."
     },
     {
-      "timeStarts": 30000,
+      "timeStarts": 30500,
       "type": "TEXT",
-      "text": "Tunnistamalla vauvan liikkeitä sinun voi olla helpompi pitää vauvaa mielessä, tiedostaen ja tutustuen vauvaan."
+      "text": "Tunnistamalla vauvan liikkeitä sinun voi olla helpompi pitää vauvaa mielessä, ja tutustua häneen. Usein liikkeiden tunnistaminen vahvistaa äidin ja vauvan yhteyttä."
     },
     {
-      "timeStarts": 38000,
-      "type": "TEXT",
-      "text": "Usein liikkeiden tunnistaminen vahvistaa yhteyttä vauvaan."
-    },
-    {
-      "timeStarts": 43000,
+      "timeStarts": 45500,
       "type": "TEXT",
       "text": "Okei. Tehdään nyt tämänkertainen harjoitus."
+    },
+    {
+      "timeStarts": 50000,
+      "type": "TEXT",
+      "text": "Etsi aluksi sinulle sopiva oma paikka jossa voit istua tai maata hetken rauhassa. Paina sitten nuolta jatkaaksesi."
     }
   ]
 }
