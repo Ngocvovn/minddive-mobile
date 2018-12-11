@@ -65,6 +65,11 @@ export class SessionDetailScreen extends Component<
             }
             style={{ marginTop: 20 }}
           />
+          <PrimaryButton
+            title="Päiväkirja"
+            style={{ marginTop: 20 }}
+            onPress={() => this.props.navigation.navigate('Diary')}
+          />
         </View>
       </View>
     )

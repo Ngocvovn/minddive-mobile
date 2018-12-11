@@ -61,6 +61,17 @@ export async function addInfo(userInfo: UserInfo) {
     console.log(e)
   }
 }
+
+export async function getInfo() {
+  const user = firebase.auth().currentUser || { uid: '' }
+  try {
+    console.log('id', user.uid)
+    let result = await userCollection.doc(user.uid).get()
+    return result
+  } catch (e) {
+    console.log(e)
+  }
+}
 // example code
 /*async function add() {
   let user = firebase.auth().currentUser

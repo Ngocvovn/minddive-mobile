@@ -14,6 +14,7 @@ interface DiaryItemProps {
 // Diary item, takes in Reflection class object
 const DiaryItem: React.SFC<DiaryItemProps> = props => {
   const { entry } = props
+  console.log('entry', entry)
   return (
     <GreenTitleBox title={entry.createdAt.toDate().toLocaleDateString()}>
       {entry.image && (
@@ -36,7 +37,7 @@ const DiaryItem: React.SFC<DiaryItemProps> = props => {
           resizeMode="cover"
           shouldPlay
           isLooping
-          style={{ width: 300, height: 300 }}
+          style={{ width: '100%', height: 300 }}
         />
       )}
     </GreenTitleBox>

@@ -90,7 +90,7 @@ export class SignUpScreen extends Component<
         <Button
           disabled={!this.validateInput()}
           onPress={this.signUpWithEmailPassword}
-          title="Log in"
+          title="Sign up"
         />
       </View>
     )

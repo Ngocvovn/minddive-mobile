@@ -14,6 +14,12 @@ class DiaryStore {
   error: any
 
   @action
+  reset() {
+    this.reflections = []
+    this.state = 'loading'
+    this.error = ''
+  }
+  @action
   async getAll() {
     let user = firebase.auth().currentUser || { uid: '' }
     try {
@@ -21,7 +27,7 @@ class DiaryStore {
       runInAction(() => {
         this.reflections = []
         query.docs.forEach(doc => {
-          this.reflections.push(doc.data())
+          this.reflections.unshift(doc.data())
         })
         this.state = 'done'
       })

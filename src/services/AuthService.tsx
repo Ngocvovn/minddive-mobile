@@ -43,6 +43,7 @@ export class AuthStateProvider extends React.Component<{}, AuthStateState> {
 export function withAuthenticatedUser<P>(
   Component: React.ComponentType<P & { user: firebase.User }>,
 ): React.ComponentType<P> {
+  console.log('userss')
   const Inner: React.SFC<NavigationInjectedProps & P> = props => {
     return (
       <Consumer>
