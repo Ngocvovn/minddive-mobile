@@ -247,9 +247,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   preview: {
-    height: 200,
-    width: 300,
-    top: 100,
+    height: 300,
+    width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -260,8 +259,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   alignHorizontally: {
-    flex: 1,
-    flexDirection: 'row',
+    paddingBottom: 30,
   },
   checkBox: {
     backgroundColor: 'transparent',
