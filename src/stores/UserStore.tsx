@@ -1,6 +1,8 @@
 import { observable, action, runInAction } from 'mobx'
 import * as firebase from 'firebase'
 import { UserInfo, addInfo, getInfo } from '../services/ReflectionService'
+
+// store of all user info and actions such as add, get
 class UserInfoStore {
   @observable
   userInfo: any

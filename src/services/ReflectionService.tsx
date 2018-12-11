@@ -1,5 +1,6 @@
 import * as firebase from 'firebase'
 
+//  instance of database
 import db from './Db'
 
 export interface Reflection {
@@ -24,6 +25,7 @@ export interface Answer {
   questionNumber: number
 }
 
+//collections in no sql database
 export const collection = db.collection('reflections')
 export const userCollection = db.collection('users')
 export const answer = db.collection('answers')
