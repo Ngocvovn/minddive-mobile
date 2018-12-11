@@ -1,9 +1,19 @@
 {
   "expo": {
+    "name": "PregMind",
+    "icon": "./icon.png",
+    "version": "1.0.0",
+    "slug": "pregmind-app",
     "sdkVersion": "27.0.0",
     "packagerOpts": {
       "sourceExts": ["ts", "tsx"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    },
+    "ios": {
+      "bundleIdentifier": "com.minddive.pregmind"
+    },
+    "android": {
+      "package": "com.minddive.pregmind"
     }
   }
 }

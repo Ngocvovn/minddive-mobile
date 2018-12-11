@@ -297,6 +297,11 @@ export default class AudioPlayer extends Component<
               disabled={this.state.isLoading}
             />
           </View>
+          <View style={styles.detailsContainer}>
+          <Text style={styles.text}>
+            {this.state.isBuffering ? BUFFERING_STRING : this._getTimestamp()}
+          </Text>
+        </View>
           <View>
             {this.state.isPlaying ? (
               <RoundButtonGreen
