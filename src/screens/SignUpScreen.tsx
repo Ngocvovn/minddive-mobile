@@ -5,7 +5,7 @@ import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
-
+import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
 interface SignUpScreenProps {
   navigation: NavigationScreenProp<{}, {}>
 }
@@ -47,43 +47,45 @@ export class SignUpScreen extends Component<
 
   public render(): React.ReactNode {
     return (
-      <View style={styles.container}>
-        <Text style={styles.error}> {this.state.error}</Text>
-        <View style={styles.nameInputRow}>
+      <ImageBackgroundLayout>
+        <View style={styles.container}>
+          <Text style={styles.error}> {this.state.error}</Text>
+          <View style={styles.nameInputRow}>
+            <TextInput
+              style={styles.nameInput}
+              autoCorrect={false}
+              onChangeText={firstName => this.setState({ firstName })}
+              placeholder="First Name"
+            />
+            <TextInput
+              style={styles.nameInput}
+              autoCorrect={false}
+              onChangeText={lastName => this.setState({ lastName })}
+              placeholder="Last Name"
+            />
+          </View>
           <TextInput
-            style={styles.nameInput}
+            autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={firstName => this.setState({ firstName })}
-            placeholder="First Name"
+            style={styles.textInput}
+            onChangeText={email => this.setState({ email })}
+            placeholder="Email"
           />
           <TextInput
-            style={styles.nameInput}
+            style={styles.textInput}
+            secureTextEntry={true}
+            autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={lastName => this.setState({ lastName })}
-            placeholder="Last Name"
+            onChangeText={password => this.setState({ password })}
+            placeholder="Password"
+          />
+          <Button
+            disabled={!this.validateInput()}
+            onPress={this.signUpWithEmailPassword}
+            title="Sign up"
           />
         </View>
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          style={styles.textInput}
-          onChangeText={email => this.setState({ email })}
-          placeholder="Email"
-        />
-        <TextInput
-          style={styles.textInput}
-          secureTextEntry={true}
-          autoCapitalize="none"
-          autoCorrect={false}
-          onChangeText={password => this.setState({ password })}
-          placeholder="Password"
-        />
-        <Button
-          disabled={!this.validateInput()}
-          onPress={this.signUpWithEmailPassword}
-          title="Sign up"
-        />
-      </View>
+      </ImageBackgroundLayout>
     )
   }
 
