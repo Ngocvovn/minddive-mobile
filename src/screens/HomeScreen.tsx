@@ -1,33 +1,12 @@
-import { Facebook } from 'expo'
-import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import {
-  Alert,
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Dimensions,
-} from 'react-native'
-import {
-  NavigationScreenProp,
-  NavigationStackScreenOptions,
-} from 'react-navigation'
+import { ScrollView, StyleSheet, View, Dimensions } from 'react-native'
+import { NavigationScreenProp } from 'react-navigation'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
 import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
-
-import LogoText from '../components/Text/LogoText'
-import db from '../services/Db'
-
 import SessionInfo from '../components/Sessions/SessionInfo'
-import { DiaryScreen } from '../screens/DiaryScreen'
-
 import sessions from '../sessions'
 import { observer } from 'mobx-react'
 import UserStore from '../stores/UserStore'
-import { getInfo } from '../services/ReflectionService'
 
 const CURRENT_WEEK = 21
 

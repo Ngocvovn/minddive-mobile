@@ -3,15 +3,7 @@ import { Ionicons } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
 import { CheckBox } from 'react-native-elements'
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Picker,
-  ScrollView,
-} from 'react-native'
+import { Button, StyleSheet, TextInput, View, ScrollView } from 'react-native'
 
 import {
   NavigationScreenProp,

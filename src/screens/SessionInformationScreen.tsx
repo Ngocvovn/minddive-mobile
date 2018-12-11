@@ -1,6 +1,5 @@
-import { Facebook } from 'expo'
 import React, { Component } from 'react'
-import { Alert, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,

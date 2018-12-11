@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, View, Image } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
