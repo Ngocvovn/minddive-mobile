@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: variables.purple,
     marginBottom: 5,
-    fontFamily: 'nunito-semibold',
+    fontFamily: 'nunito-regular',
   },
   h3: {
     fontSize: variables.mediumFont,
     fontWeight: 'bold',
     color: variables.purple,
     marginBottom: 5,
-    fontFamily: 'nunito-semibold',
+    fontFamily: 'nunito-regular',
   },
 })
 

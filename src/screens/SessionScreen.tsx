@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ProgressCircle } from 'react-native-svg-charts'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
 } from 'react-navigation'
-import { ProgressCircle } from 'react-native-svg-charts'
 
-import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
-import { H3, H2 } from '../components/Text/Header'
-import Paragraph from '../components/Text/Paragraph'
-import sessions from '../sessions'
+import { Ionicons } from '@expo/vector-icons'
+import { observer } from 'mobx-react'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
+import RoundButton from '../components/Buttons/RoundButton'
+import DiaryItem from '../components/Diary/DiaryItem'
+import { H2, H3 } from '../components/Text/Header'
+import LogoText from '../components/Text/LogoText'
+import Paragraph from '../components/Text/Paragraph'
+import BottomRightFixed from '../layouts/BottomRightFixed'
+import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
+import TextBoxWhite from '../layouts/TextBoxWhite'
+import sessions from '../sessions'
+import DiaryStore from '../stores/DiaryStore'
 
 interface SessionScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -21,6 +29,7 @@ interface SessionScreenState {
   calendar: boolean
 }
 
+@observer
 export class SessionScreen extends Component<
   SessionScreenProps,
   SessionScreenState
@@ -28,6 +37,14 @@ export class SessionScreen extends Component<
   public static navigationOptions: NavigationStackScreenOptions = {
     title: '',
   }
+
+  public async componentDidMount() {
+    await DiaryStore.getAll()
+  }
+
+  public keyExtractor = (item, index) => 'diaryItem' + index
+
+  public renderItem = ({ item }) => <DiaryItem entry={item} />
 
   constructor(props: SessionScreenProps) {
     super(props)
@@ -44,29 +61,50 @@ export class SessionScreen extends Component<
       { quarter: 3, earnings: 14250 },
       { quarter: 4, earnings: 19000 },
     ]
-    console.log(sessions[21].default.reflection.description)
     return (
       <ImageBackgroundLayout>
-        <Text style={styles.error}>
-          <H2 text="Viikko 21" />
-        </Text>
-        <ProgressCircle
-          style={{ height: 200 }}
-          progress={0.6}
-          strokeWidth={10}
-          progressColor={'rgb(134, 65, 244)'}
-        />
-        <View style={styles.infoContainer}>
-          <H3 text={sessions[21].default.name} />
-          <Paragraph text={sessions[21].default.reflection.description} />
-          <PrimaryButton
-            title="Sessioon"
-            onPress={() =>
-              this.props.navigation.navigate('SessionDetail', { session: 21 })
-            }
-            style={{ marginTop: 20 }}
-          />
-        </View>
+        <ScrollView>
+          <View style={{ marginTop: 20, marginBottom: 20 }}>
+            <Text style={styles.error}>
+              <LogoText text="Viikko 21" />
+            </Text>
+            <ProgressCircle
+              style={{ height: 200, marginBottom: 20 }}
+              progress={0.6}
+              strokeWidth={15}
+              progressColor={'rgb(134, 65, 244)'}
+            />
+            <View style={{ marginLeft: 20, marginRight: 20 }}>
+              <TextBoxWhite>
+                <H3 text={sessions[21].default.name} />
+                <Paragraph text={sessions[21].default.description} />
+                <PrimaryButton
+                  title="Sessioon"
+                  onPress={() =>
+                    this.props.navigation.navigate('SessionDetail', {
+                      session: 21,
+                    })
+                  }
+                  style={{ marginTop: 20 }}
+                />
+              </TextBoxWhite>
+            </View>
+          </View>
+          <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+            <FlatList
+              data={DiaryStore.reflections}
+              keyExtractor={this.keyExtractor}
+              renderItem={this.renderItem}
+            />
+          </View>
+        </ScrollView>
+        <BottomRightFixed>
+          <RoundButton
+            onPress={() => this.props.navigation.navigate('AddReflection')}
+          >
+            <Ionicons name="md-add" size={32} color="white" />
+          </RoundButton>
+        </BottomRightFixed>
       </ImageBackgroundLayout>
     )
   }

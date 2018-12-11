@@ -69,7 +69,7 @@ export class SessionInformationScreen extends Component<
           track={audio}
           onAudioEnd={this.navigateToExercise}
           onTimestampUpdate={timestamp =>
-            this.setState({ timestamp: timestamp })
+            this.setState({ timestamp })
           }
         />
       </DefaultLayout>

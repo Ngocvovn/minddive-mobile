@@ -9,6 +9,7 @@ import { H3, H2 } from '../components/Text/Header'
 import Paragraph from '../components/Text/Paragraph'
 import sessions from '../sessions'
 import PrimaryButton from '../components/Buttons/PrimaryButton'
+import TextBoxWhite from '../layouts/TextBoxWhite'
 const baby = require('../sessions/1x/Asset3.png')
 
 interface SessionDetailScreenProps {
@@ -38,27 +39,27 @@ export class SessionDetailScreen extends Component<
 
   public render(): React.ReactNode {
     return (
-      <View>
+      <View style={{ backgroundColor: 'white' }}>
         <Image source={baby} style={{ height: 200 }} />
         <View style={styles.infoContainer}>
-          <H3 text={sessions[21].default.name} />
-          <Paragraph text={sessions[21].default.reflection.description} />
+          <H2 text={sessions[21].default.name} />
+          <Paragraph text={sessions[21].default.description} />
           <PrimaryButton
-            title="Informatio"
+            title="Informaatio"
             onPress={() =>
               this.props.navigation.navigate('Information', { session: 21 })
             }
             style={{ marginTop: 20 }}
           />
           <PrimaryButton
-            title="Haroitus"
+            title="Harjoitus"
             onPress={() =>
               this.props.navigation.navigate('Exercise', { session: 21 })
             }
             style={{ marginTop: 20 }}
           />
           <PrimaryButton
-            title="Reflekio"
+            title="Reflektio"
             onPress={() =>
               this.props.navigation.navigate('Reflection', { session: 21 })
             }
@@ -72,8 +73,8 @@ export class SessionDetailScreen extends Component<
 
 const styles = StyleSheet.create({
   infoContainer: {
-    paddingLeft: 20,
-    paddingBottom: 10,
+    padding: 20,
+    backgroundColor: 'white',
   },
   error: {
     textAlign: 'center',

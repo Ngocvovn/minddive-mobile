@@ -11,9 +11,10 @@ import { pickImage } from '../services/FileServices'
 import DefaultLayout from '../layouts/DefaultLayout'
 import BottomRightFixed from '../layouts/BottomRightFixed'
 import RoundButton from '../components/Buttons/RoundButton'
+import { Ionicons } from '@expo/vector-icons'
 import DiaryItem from '../components/Diary/DiaryItem'
 import { observer } from 'mobx-react'
-import { Ionicons } from '@expo/vector-icons'
+
 import {
   Alert,
   Button,
@@ -64,6 +65,7 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
   public renderItem = ({ item }) => <DiaryItem entry={item} />
 
   public render(): React.ReactNode {
+    console.log(DiaryStore.reflections)
     return (
       <DefaultLayout>
         <FlatList
@@ -74,7 +76,8 @@ export class DiaryScreen extends Component<DiaryScreenProps, DiaryScreenState> {
         <BottomRightFixed>
           <RoundButton
             onPress={() => this.props.navigation.navigate('AddReflection')}
-          ><Ionicons name="md-add" size={32} color="white" />
+          >
+            <Ionicons name="md-add" size={32} color="white" />
           </RoundButton>
         </BottomRightFixed>
       </DefaultLayout>
