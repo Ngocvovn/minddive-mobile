@@ -54,7 +54,7 @@ export class AddReflectionScreen extends Component<
     super(props)
     this.state = {
       text: '',
-      feeling: 'Pelkoa',
+      feeling: '',
       error: '',
       reflections: [],
       message: '',
@@ -88,12 +88,6 @@ export class AddReflectionScreen extends Component<
               onChangeText={text => this.setState({ text })}
             />
           </GreenTitleBox>
-          <Ionicons
-            name="md-camera"
-            size={32}
-            color="black"
-            onPress={this.addImage}
-          />
           <GreenTitleBox title="Mitä tuntemuksia vauvan liikkeet herättävät?">
             <CheckBox
               containerStyle={styles.checkBox}
@@ -126,30 +120,43 @@ export class AddReflectionScreen extends Component<
               onPress={() => this.setState({ feeling: 'Iloa' })}
             />
           </GreenTitleBox>
-          <View style={styles.alignHorizontally}>
-            <PrimaryButton
-              title="Start"
-              style={{ marginTop: 10, marginBottom: 10 }}
-              onPress={this.startVideo}
-            />
+          <GreenTitleBox title="Lisää kuva">
+            <View style={{ padding: 20 }}>
+              <Ionicons
+                name="md-camera"
+                size={32}
+                color="black"
+                onPress={this.addImage}
+              />
+              {this.state.image && <Text>Kuva ladattu</Text>}
+            </View>
+          </GreenTitleBox>
+          <GreenTitleBox title="Lisää video">
+            <View style={styles.alignHorizontally}>
+              <PrimaryButton
+                title="Start"
+                style={{ marginTop: 10, marginBottom: 10 }}
+                onPress={this.startVideo}
+              />
 
-            <PrimaryButton
-              title="Stop"
-              style={{ marginTop: 10, marginBottom: 10 }}
-              onPress={this.stopVideo}
-            />
+              <PrimaryButton
+                title="Stop"
+                style={{ marginTop: 10, marginBottom: 10 }}
+                onPress={this.stopVideo}
+              />
 
-            <Camera
-              ref={cam => {
-                this.camera = cam
-              }}
-              style={styles.preview}
-              type={Camera.Constants.Type.front}
-              onCameraReady={() => {
-                this.setState({ message: 'Camera Ready !' })
-              }}
-            />
-          </View>
+              <Camera
+                ref={cam => {
+                  this.camera = cam
+                }}
+                style={styles.preview}
+                type={Camera.Constants.Type.front}
+                onCameraReady={() => {
+                  this.setState({ message: 'Camera Ready !' })
+                }}
+              />
+            </View>
+          </GreenTitleBox>
           <PrimaryButton
             onPress={this.addNewReflection.bind(this)}
             title="Tallenna"
@@ -210,8 +217,10 @@ export class AddReflectionScreen extends Component<
       reflection.video = this.state.video
     }
     try {
-      console.log(reflection)
-      await DiaryStore.addReflection(reflection)
+      const success = await DiaryStore.addReflection(reflection)
+      if (success) {
+        this.props.navigation.navigate('Session')
+      }
     } catch (e) {
       console.log(e)
     }

@@ -32,6 +32,7 @@ const tellStatus = status => console.log(status)
 // Diary item, takes in Reflection class object
 const DiaryItem: React.SFC<DiaryItemProps> = props => {
   const { entry } = props
+  console.log(entry)
 
   return (
     <GreenTitleBox title={entry.createdAt.toDate().toLocaleDateString()}>

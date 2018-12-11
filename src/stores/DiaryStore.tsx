@@ -44,12 +44,14 @@ class DiaryStore {
       runInAction(() => {
         if (result) {
           this.reflections.unshift(reflection)
+          return true
         }
         this.state = 'done'
       })
     } catch (e) {
       this.state = 'error'
       this.error = e
+      return false
     }
   }
 }
