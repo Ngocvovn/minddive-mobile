@@ -30,7 +30,7 @@ const SessionInfo: React.SFC<SessionInfoProps> = props => {
       style={{ flex: 1, width: width - 60, marginLeft: 30, marginRight: 30 }}
     >
       <View style={styles.week}>
-        <LogoText text={session.week.toString()} />
+        <LogoText text="21" />
       </View>
       <View style={styles.text}>
         <TextBoxWhite>

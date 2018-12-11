@@ -7,7 +7,8 @@ import AppLoading from './components/Loading/AppLoading'
 import { RootNavigator } from './navigation/RootNavigator'
 import { AuthStateProvider } from './services/AuthService'
 
-YellowBox.ignoreWarnings(['Setting a timer'])
+YellowBox.ignoreWarnings(['Setting a timer', 'Warning: Can'])
+
 const _console = _.clone(console)
 
 console.warn = (message: any) => {

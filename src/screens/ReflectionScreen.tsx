@@ -2,6 +2,7 @@ import { Permissions, Camera } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
+import { CheckBox } from 'react-native-elements'
 import {
   Button,
   StyleSheet,
@@ -24,6 +25,7 @@ import sessions from '../sessions'
 import { Answer, Reflection } from '../services/ReflectionService'
 import { pickImage } from '../services/FileServices'
 import DiaryStore from '../stores/DiaryStore'
+import UserStore from '../stores/UserStore'
 
 interface ReflectionScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -57,7 +59,7 @@ export class ReflectionScreen extends Component<
       error: '',
       session: props.navigation.getParam('session', 21),
       answers: new Array<Answer>(4),
-      feeling: 'Happy',
+      feeling: 'Pelkoa',
       message: '',
       recording: false,
       image: '',
@@ -100,7 +102,7 @@ export class ReflectionScreen extends Component<
             </GreenTitleBox>
           ))}
 
-          <View style={styles.alignHorizontally}>
+          {/*<View style={styles.alignHorizontally}>
             <Text style={styles.capture} onPress={this.startVideo}>
               Start
             </Text>
@@ -118,48 +120,96 @@ export class ReflectionScreen extends Component<
                 this.setState({ message: 'Camera Ready !' })
               }}
             />
-          </View>
+            </View>*/}
+
+          <GreenTitleBox title="Kirjoita merkintä">
+            <TextInput
+              style={{ padding: 10, textAlignVertical: 'top', fontSize: 20 }}
+              multiline={true}
+              numberOfLines={4}
+              underlineColorAndroid="transparent"
+              placeholder="Kerro vapaasti"
+              onChangeText={text => this.setState({ text })}
+            />
+          </GreenTitleBox>
           <Ionicons
             name="md-camera"
             size={32}
             color="black"
             onPress={this.addImage}
           />
-          <TextInput
-            autoCapitalize="sentences"
-            autoCorrect={false}
-            multiline={true}
-            style={styles.textInput}
-            onChangeText={text => this.setState({ text })}
-            placeholder="Kirjoita merkintä"
-          />
+          <GreenTitleBox title="Mitä tuntemuksia vauvan liikkeet herättävät?">
+            <CheckBox
+              containerStyle={styles.checkBox}
+              title="Mielenkiintoa"
+              checked={this.state.feeling === 'Mielenkiintoa'}
+              onPress={() => this.setState({ feeling: 'Mielenkiintoa' })}
+            />
+            <CheckBox
+              containerStyle={styles.checkBox}
+              title="Hämmennystä"
+              checked={this.state.feeling === 'Hämmennystä'}
+              onPress={() => this.setState({ feeling: 'Hämmennystä' })}
+            />
+            <CheckBox
+              containerStyle={styles.checkBox}
+              title="Pelkoa"
+              checked={this.state.feeling === 'Pelkoa'}
+              onPress={() => this.setState({ feeling: 'Pelkoa' })}
+            />
+            <CheckBox
+              containerStyle={styles.checkBox}
+              title="Ärtymystä"
+              checked={this.state.feeling === 'Ärtymystä'}
+              onPress={() => this.setState({ feeling: 'Ärtymystä' })}
+            />
+            <CheckBox
+              containerStyle={styles.checkBox}
+              title="Iloa"
+              checked={this.state.feeling === 'Iloa'}
+              onPress={() => this.setState({ feeling: 'Iloa' })}
+            />
+          </GreenTitleBox>
           <View style={styles.alignHorizontally}>
-            <Picker
-              selectedValue={this.state.feeling}
-              style={{ height: 50, width: 100 }}
-              onValueChange={(itemValue, itemIndex) =>
-                this.setState({ feeling: itemValue })
-              }
-            >
-              <Picker.Item label="Happy" value="Happy" />
-              <Picker.Item label="Bad" value="Bad" />
-            </Picker>
+            <PrimaryButton
+              title="Start"
+              style={{ marginTop: 10, marginBottom: 10 }}
+              onPress={this.startVideo}
+            />
+
+            <PrimaryButton
+              title="Stop"
+              style={{ marginTop: 10, marginBottom: 10 }}
+              onPress={this.stopVideo}
+            />
+
+            <Camera
+              ref={cam => {
+                this.camera = cam
+              }}
+              style={styles.preview}
+              type={Camera.Constants.Type.front}
+              onCameraReady={() => {
+                this.setState({ message: 'Camera Ready !' })
+              }}
+            />
           </View>
           <PrimaryButton
             onPress={this.saveReflection}
             title="Tallenna"
-            style={{ marginTop: 20, marginBottom: 20 }}
+            style={{ marginTop: 30, marginBottom: 20 }}
           />
-          <Button
-            onPress={() => {
-              firebase.auth().signOut()
-              this.props.navigation.navigate('Login')
-            }}
-            title="Log out"
-          />
+          <Button onPress={this.logout.bind(this)} title="Log out" />
         </ScrollView>
       </DefaultLayout>
     )
+  }
+
+  private logout() {
+    UserStore.reset()
+    DiaryStore.reset()
+    firebase.auth().signOut()
+    this.props.navigation.navigate('Login')
   }
 
   private async saveReflection() {
@@ -196,6 +246,7 @@ export class ReflectionScreen extends Component<
     )
     try {
       const data = await this.camera.recordAsync({})
+      console.log(data)
       this.setState({ video: data.uri })
     } catch (error) {
       this.setState({ message: error })
@@ -205,7 +256,6 @@ export class ReflectionScreen extends Component<
 
   private async stopVideo() {
     this.setState({ recording: false })
-    if (!this.camera) return
     this.camera.stopRecording()
   }
 
@@ -241,9 +291,8 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   preview: {
-    height: 200,
-    width: 300,
-    top: 100,
+    height: 300,
+    width: '100%',
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -254,8 +303,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   alignHorizontally: {
-    flex: 1,
-    flexDirection: 'row',
+    paddingBottom: 30,
+  },
+  checkBox: {
+    backgroundColor: 'transparent',
+    marginLeft: 0,
+    paddingLeft: 0,
+    borderWidth: 0,
   },
 })
 

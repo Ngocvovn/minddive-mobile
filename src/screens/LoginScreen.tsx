@@ -1,14 +1,6 @@
-import { Facebook, ImagePicker, Permissions } from 'expo'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import {
-  Alert,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native'
+import { StyleSheet, Text, TextInput } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
@@ -16,16 +8,9 @@ import {
 import PrimaryButton from '../components/Buttons/PrimaryButton'
 import LogoText from '../components/Text/LogoText'
 import ImageBackgroundLayout from '../layouts/ImageBackgroundLayout'
-import db from '../services/Db'
-import { uploadImage } from '../services/FileServices'
-import {
-  addReflection,
-  deleteReflection,
-  Feeling,
-  Reflection,
-  updateReflection,
-} from '../services/ReflectionService'
+
 import { SignUpScreen } from './SignUpScreen'
+import UserStore from '../stores/UserStore'
 
 interface LoginScreenProps {
   navigation: NavigationScreenProp<{}, {}>
@@ -110,6 +95,7 @@ export class LoginScreen extends Component<LoginScreenProps, LoginScreenState> {
       const authCred = await firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
+      await UserStore.getUserInfo()
       navigation.navigate('App')
     } catch (error) {
       const errorCode = error.code

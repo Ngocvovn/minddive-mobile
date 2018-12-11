@@ -13,14 +13,14 @@ import { HomeScreen } from '../screens/HomeScreen'
 import { ReflectionScreen } from '../screens/ReflectionScreen'
 import { SessionInformationScreen } from '../screens/SessionInformationScreen'
 import { SessionDetailScreen } from '../screens/SessionDetailScreen'
+import { AddReflectionScreen } from '../screens/AddReflectionScreen'
 
 import variables from '../styles/variables'
 import UserStore from '../stores/UserStore'
-
+import { getInfo } from '../services/ReflectionService'
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
 }
-
 export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigator(
   {
     Home: {
@@ -28,6 +28,9 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
     AddUser: {
       screen: AddUserInfoScreen,
+    },
+    AddReflection: {
+      screen: AddReflectionScreen,
     },
     Diary: {
       screen: DiaryScreen,
@@ -49,7 +52,7 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
   {
-    initialRouteName: UserStore.userInfo.dueDate ? 'AddUser' : 'Session',
+    initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
         backgroundColor: variables.purpleGrey,

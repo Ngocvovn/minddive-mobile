@@ -68,55 +68,60 @@ export class AddUserInfoScreen extends Component<
     const { calendar } = this.state
     return (
       <ImageBackgroundLayout>
-        <Text style={styles.error}> {this.state.error}</Text>
-        <LogoText text="Tervetuloa," />
-        <Text>Laskettu aika</Text>
-        {!calendar ? (
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              padding: 13,
-              marginTop: 10,
-              borderRadius: 2,
-              backgroundColor: 'white',
-            }}
-          >
-            <Text style={{ paddingTop: 10 }}>
-              {new Date(this.state.dueDate).toDateString()}
-            </Text>
-            <Ionicons
-              name="md-calendar"
-              size={32}
-              color="black"
-              onPress={() => this.setState({ calendar: !this.state.calendar })}
+        <View style={styles.container}>
+          <Text style={styles.error}> {this.state.error}</Text>
+          <LogoText text="Tervetuloa," />
+          <Text>Laskettu aika</Text>
+          {!calendar ? (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 13,
+                marginTop: 10,
+                borderRadius: 2,
+                backgroundColor: 'white',
+              }}
+            >
+              <Text style={{ paddingTop: 10 }}>
+                {new Date(this.state.dueDate).toDateString()}
+              </Text>
+              <Ionicons
+                name="md-calendar"
+                size={32}
+                color="black"
+                onPress={() =>
+                  this.setState({ calendar: !this.state.calendar })
+                }
+              />
+            </View>
+          ) : (
+            <Calendar
+              onDayPress={date =>
+                this.setState({ dueDate: date.timestamp, calendar: !calendar })
+              }
+              minDate={new Date().toDateString()}
             />
-          </View>
-        ) : (
-          <Calendar
-            onDayPress={date =>
-              this.setState({ dueDate: date.timestamp, calendar: !calendar })
-            }
-            minDate={new Date().toDateString()}
+          )}
+          <CheckBox
+            title="Are you mother ?"
+            checked={this.state.isMother}
+            containerStyle={{
+              backgroundColor: 'transparent',
+              borderWidth: 0,
+              padding: 0,
+            }}
+            onPress={() => this.setState({ isMother: !this.state.isMother })}
           />
-        )}
-        <CheckBox
-          title="Are you mother ?"
-          checked={this.state.isMother}
-          containerStyle={{
-            backgroundColor: 'transparent',
-            borderWidth: 0,
-            padding: 0,
-          }}
-          onPress={() => this.setState({ isMother: !this.state.isMother })}
-        />
-        <PrimaryButton onPress={this.addUserInfo} title="Tallenna" />
+          <PrimaryButton onPress={this.addUserInfo} title="Tallenna" />
+        </View>
       </ImageBackgroundLayout>
     )
   }
 
   async addUserInfo() {
     try {
+      console.log('asdasd')
       await UserStore.addUserInfo({
         dueDate: firebase.firestore.Timestamp.fromMillis(this.state.dueDate),
         isMother: this.state.isMother,
@@ -129,6 +134,10 @@ export class AddUserInfoScreen extends Component<
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginLeft: 20,
+    marginRight: 20,
+  },
   textInput: {
     margin: 10,
     paddingLeft: 20,
