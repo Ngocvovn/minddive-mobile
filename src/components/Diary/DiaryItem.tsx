@@ -56,7 +56,6 @@ const DiaryItem: React.SFC<DiaryItemProps> = props => {
           resizeMode="cover"
           useNativeControls
           onPlaybackStatusUpdate={tellStatus}
-          shouldPlay
           posterSource={loading}
           style={{ width: '100%', height: 300 }}
         />
