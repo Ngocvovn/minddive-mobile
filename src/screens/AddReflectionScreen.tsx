@@ -217,10 +217,7 @@ export class AddReflectionScreen extends Component<
       reflection.video = this.state.video
     }
     try {
-      const success = await DiaryStore.addReflection(reflection)
-      if (success) {
-        this.props.navigation.navigate('Session')
-      }
+      await DiaryStore.addReflection(reflection)
     } catch (e) {
       console.log(e)
     }
