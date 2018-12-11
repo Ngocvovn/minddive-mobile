@@ -1,30 +1,13 @@
-import { Facebook } from 'expo'
-import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import { SignUpScreen } from './SignUpScreen'
-import {
-  addReflection,
-  Reflection,
-  collection,
-} from '../services/ReflectionService'
-import { pickImage } from '../services/FileServices'
+import { Reflection } from '../services/ReflectionService'
 import DefaultLayout from '../layouts/DefaultLayout'
 import BottomRightFixed from '../layouts/BottomRightFixed'
 import RoundButton from '../components/Buttons/RoundButton'
 import { Ionicons } from '@expo/vector-icons'
 import DiaryItem from '../components/Diary/DiaryItem'
 import { observer } from 'mobx-react'
-
-import {
-  Alert,
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-} from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
+import { FlatList, StyleSheet } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,

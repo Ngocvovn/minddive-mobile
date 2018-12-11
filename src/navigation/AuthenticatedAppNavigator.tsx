@@ -1,5 +1,4 @@
 /* tslint:disable:max-classes-per-file */
-import * as React from 'react'
 import {
   createStackNavigator,
   NavigationContainer,
@@ -16,8 +15,6 @@ import { SessionDetailScreen } from '../screens/SessionDetailScreen'
 import { AddReflectionScreen } from '../screens/AddReflectionScreen'
 
 import variables from '../styles/variables'
-import UserStore from '../stores/UserStore'
-import { getInfo } from '../services/ReflectionService'
 interface HomeScreenProps {
   navigation: NavigationScreenProp<{}, {}>
 }

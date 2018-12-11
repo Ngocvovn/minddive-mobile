@@ -1,7 +1,7 @@
 import * as firebase from 'firebase'
 import hoistNonReactStatics from 'hoist-non-react-statics'
 import * as React from 'react'
-import { AsyncStorage, Button, Text, View } from 'react-native'
+import { Button, Text, View } from 'react-native'
 import { NavigationInjectedProps, withNavigation } from 'react-navigation'
 import { init } from '../services/FireBase'
 const { Consumer, Provider } = React.createContext<null | firebase.User>(null)

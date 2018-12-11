@@ -161,6 +161,7 @@ export class AddReflectionScreen extends Component<
     )
   }
 
+  // ask permission then start to record with front camera
   startVideo = async () => {
     const { status: existingStatus2 } = await Permissions.askAsync(
       Permissions.AUDIO_RECORDING,
@@ -184,6 +185,7 @@ export class AddReflectionScreen extends Component<
     this.camera.stopRecording()
   }
 
+  //reset all store, sign out then navigate to login screen
   private logout() {
     UserStore.reset()
     DiaryStore.reset()

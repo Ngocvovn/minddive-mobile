@@ -66,6 +66,7 @@ export class PasswordRecoveryScreen extends Component<
     return SignUpScreen.EMAIL_REGEX.test(this.state.email.toLowerCase())
   }
 
+  //send password reset request to firebase
   private async sendResetPasswordEmail(): Promise<void> {
     const { email } = this.state
     // https://firebase.google.com/docs/reference/js/firebase.auth.Auth#sendPasswordResetEmail

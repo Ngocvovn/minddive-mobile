@@ -1,15 +1,6 @@
-import { Facebook } from 'expo'
 import * as firebase from 'firebase'
 import React, { Component } from 'react'
-import {
-  Alert,
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import {
   NavigationScreenProp,
   NavigationStackScreenOptions,
