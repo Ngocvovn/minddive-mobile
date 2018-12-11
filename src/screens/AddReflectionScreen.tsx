@@ -259,8 +259,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   alignHorizontally: {
-    flex: 1,
-    flexDirection: 'row',
+    paddingBottom: 30,
   },
   checkBox: {
     backgroundColor: 'transparent',
