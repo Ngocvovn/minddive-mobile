@@ -52,7 +52,7 @@ export const AuthenticatedAppNavigator: NavigationContainer = createStackNavigat
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Session',
     navigationOptions: {
       headerStyle: {
         backgroundColor: variables.purpleGrey,

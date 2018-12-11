@@ -132,12 +132,6 @@ export class ReflectionScreen extends Component<
               onChangeText={text => this.setState({ text })}
             />
           </GreenTitleBox>
-          <Ionicons
-            name="md-camera"
-            size={32}
-            color="black"
-            onPress={this.addImage}
-          />
           <GreenTitleBox title="Mitä tuntemuksia vauvan liikkeet herättävät?">
             <CheckBox
               containerStyle={styles.checkBox}
@@ -170,30 +164,6 @@ export class ReflectionScreen extends Component<
               onPress={() => this.setState({ feeling: 'Iloa' })}
             />
           </GreenTitleBox>
-          <View style={styles.alignHorizontally}>
-            <PrimaryButton
-              title="Start"
-              style={{ marginTop: 10, marginBottom: 10 }}
-              onPress={this.startVideo}
-            />
-
-            <PrimaryButton
-              title="Stop"
-              style={{ marginTop: 10, marginBottom: 10 }}
-              onPress={this.stopVideo}
-            />
-
-            <Camera
-              ref={cam => {
-                this.camera = cam
-              }}
-              style={styles.preview}
-              type={Camera.Constants.Type.front}
-              onCameraReady={() => {
-                this.setState({ message: 'Camera Ready !' })
-              }}
-            />
-          </View>
           <PrimaryButton
             onPress={this.saveReflection}
             title="Tallenna"

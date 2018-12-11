@@ -4,7 +4,7 @@
     "length": 1,
     "text": "Tervetuloa viikon 21 sessioon, paina playta aloittaaksesi."
   },
-  "audio": "https://iinar.net/pregmind/week21/sessio_info.mp3",
+  "audio": "https://iinar.net/pregmind/week21/info.mp3",
   "script": [
     {
       "timeStarts": 1500,
